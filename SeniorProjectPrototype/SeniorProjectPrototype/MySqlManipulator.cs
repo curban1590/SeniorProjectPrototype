@@ -40,7 +40,7 @@ namespace SeniorProjectPrototype
                 {
                     connection.Open();
 
-                    MessageBox.Show("successful connection");
+                    MessageBox.Show("Successful Connection To Database");
 
                     connection.Close();
                 }
@@ -54,7 +54,7 @@ namespace SeniorProjectPrototype
         {
             bool isValid = false;
 
-            string command = "SELECT EmployeeID, EmployeeID FROM Employee WHERE EmployeeID = " + id; // + " AND EmployeeZip = " + zip + ";";
+            string command = "SELECT EmployeeID, EmployeeZip FROM Employee WHERE EmployeeID = " + id + " AND EmployeeZip = 12345"; //+ zip + ";";
 
             MySqlCommand myCommand = new MySqlCommand(command, connection);
             connection.Open();
@@ -63,7 +63,7 @@ namespace SeniorProjectPrototype
             
             while (reader.Read())
             {
-                if (id == reader.GetString("EmployeeID")) // && zip == reader.GetString("EmployeeZip"))
+                if (id == reader.GetString("EmployeeID") && zip == Convert.ToString(reader[1]))
                 {
                     isValid = true;
                     break;

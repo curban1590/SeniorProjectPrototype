@@ -29,7 +29,7 @@ namespace SeniorProjectPrototype
         {
             string username = usernameTextBox.Text;
             string password = passwordTextBox.Password;
-
+            
 
             MySqlManipulator mySqlManipulator = new MySqlManipulator();
 
@@ -37,7 +37,19 @@ namespace SeniorProjectPrototype
 
             bool isValid = mySqlManipulator.loginCheck(username, password);
 
+            // TESTING CODE            
             Console.WriteLine(isValid);
+
+            if (!isValid)
+            {
+                MessageBox.Show("Not a valid Login", "Invalid Login", MessageBoxButton.OK, MessageBoxImage.Hand);
+                usernameTextBox.Clear();
+                passwordTextBox.Clear();
+            }
+            else
+            {
+                NavigationService.Navigate(new Page2());
+            }
 
         }
     }

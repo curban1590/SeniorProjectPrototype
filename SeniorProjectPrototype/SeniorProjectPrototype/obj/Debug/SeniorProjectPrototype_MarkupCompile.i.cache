@@ -1,7 +1,7 @@
 ﻿SeniorProjectPrototype
 
 
-winexe
+exe
 C#
 .cs
 C:\Users\jason\Desktop\SeniorProjectPrototype\SeniorProjectPrototype\obj\Debug\
@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\jason\Desktop\SeniorProjectPrototype\SeniorProjectPrototype\App.xaml
-2400784391
+3-349979442
 
-8-341773466
+9434211241
 13393030782
-MainWindow.xaml;Page1.xaml;
+MainWindow.xaml;Page1.xaml;Page2.xaml;
 
-False
+True
 
