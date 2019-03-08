@@ -9,6 +9,14 @@
       Title="Page2">
 
     <Grid>
-        <Image Source="Image5.png" Stretch="Fill"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="88"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="84*"/>
+        </Grid.ColumnDefinitions>
+        <Image Source="Image5.png" Stretch="Fill" Grid.Column="1" HorizontalAlignment="Right" Width="691" Grid.ColumnSpan="2"/>
+        <GridSplitter Margin="15,0,19,0" RenderTransformOrigin="0.5,0.5" Grid.Column="1" HorizontalAlignment="Stretch"/>
+        <Button x:Name="button_Add_Client" Content="Add Client" Margin="10,104,18,296" VerticalAlignment="Center" Height="50" MinWidth="60" MinHeight="50" Click="Button_Add_Client_Click"/>
+        <Button x:Name="button_Add_Employee" Content="Add Employee" Margin="10,182,18,213" VerticalAlignment="Center" Height="50" MinWidth="60" MinHeight="50" Click="Button_Add_Employee_Click"/>
     </Grid>
 </Page>

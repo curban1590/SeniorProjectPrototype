@@ -23,5 +23,15 @@ namespace SeniorProjectPrototype
         {
             InitializeComponent();
         }
+
+        private void Button_Add_Client_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Add_Employee_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

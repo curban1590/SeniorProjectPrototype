@@ -21,10 +21,10 @@ namespace SeniorProjectPrototype
             public void login()
             {
             
-                server = "sql9.freemysqlhosting.net";
-                database = "sql9280619";
-                user = "sql9280619";
-                password = "c1R8qVLfl1";
+                server = "remotemysql.com";
+                database = "iwszrpTbK9";
+                user = "iwszrpTbK9";
+                password = "YRVCNclT6P";
                 port = "3306";
                 sslM = "none";
 
@@ -54,7 +54,7 @@ namespace SeniorProjectPrototype
         {
             bool isValid = false;
 
-            string command = "SELECT EmployeeID, EmployeeZip FROM Employee WHERE EmployeeID = " + id + " AND EmployeeZip = 12345"; //+ zip + ";";
+            string command = "SELECT EmployeeID, EmployeeZip FROM tblEmployee WHERE EmployeeID = " + id + " AND EmployeeZip = 12345"; //+ zip + ";";
 
             MySqlCommand myCommand = new MySqlCommand(command, connection);
             connection.Open();

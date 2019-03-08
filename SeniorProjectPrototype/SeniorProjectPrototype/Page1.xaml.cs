@@ -27,10 +27,14 @@ namespace SeniorProjectPrototype
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            //Page page2 = new Page2();
+            //page2.();
+            NavigationService.Navigate(new Page2());
+
+            /*
             string username = usernameTextBox.Text;
             string password = passwordTextBox.Password;
             
-
             MySqlManipulator mySqlManipulator = new MySqlManipulator();
 
             mySqlManipulator.login();
@@ -50,7 +54,7 @@ namespace SeniorProjectPrototype
             {
                 NavigationService.Navigate(new Page2());
             }
-
+            */
         }
     }
 }

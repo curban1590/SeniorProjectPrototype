@@ -36,3 +36,4 @@ C:\Users\jason\Desktop\SeniorProjectPrototype\SeniorProjectPrototype\bin\Debug\M
 C:\Users\jason\Desktop\SeniorProjectPrototype\SeniorProjectPrototype\obj\Debug\SeniorProjectPrototype.csproj.CopyComplete
 C:\Users\jason\Desktop\SeniorProjectPrototype\SeniorProjectPrototype\obj\Debug\Page2.g.cs
 C:\Users\jason\Desktop\SeniorProjectPrototype\SeniorProjectPrototype\obj\Debug\Page2.baml
+C:\Users\jason\Desktop\SeniorProjectPrototype\SeniorProjectPrototype\obj\Debug\SeniorProjectPrototype.AddEmployeeForm.resources
