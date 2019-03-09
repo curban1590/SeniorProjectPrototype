@@ -15,24 +15,19 @@ using System.Windows.Shapes;
 namespace SeniorProjectPrototype
 {
     /// <summary>
-    /// Interaction logic for Page2.xaml
+    /// Interaction logic for SecondWindow.xaml
     /// </summary>
-    public partial class Page2 : Page
+    public partial class SecondWindow : Window
     {
-        public Page2()
+        public SecondWindow()
         {
             InitializeComponent();
+            
         }
 
-        private void Button_Add_Client_Click(object sender, RoutedEventArgs e)
+        private void Frame2_Loaded(object sender, RoutedEventArgs e)
         {
-            SecondWindow addEmp = new SecondWindow();
-            addEmp.Show();
-        }
-
-        private void Button_Add_Employee_Click(object sender, RoutedEventArgs e)
-        {
-
+            frame2.NavigationService.Navigate(new Page1());
         }
     }
 }

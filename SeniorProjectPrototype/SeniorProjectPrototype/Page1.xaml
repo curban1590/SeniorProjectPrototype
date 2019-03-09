@@ -11,7 +11,7 @@
     <Grid>
         <Label Content="Employee ID" HorizontalAlignment="Left" Margin="354,110,0,0" VerticalAlignment="Top" FontFamily="Agency FB" FontSize="20"/>
         <Label Content="Zip Code" HorizontalAlignment="Left" Margin="361,202,0,0" VerticalAlignment="Top" FontFamily="Agency FB" FontSize="20"/>
-        <Label Content="Login" Margin="369,48,0,0" VerticalAlignment="Top" FontFamily="Agency FB" FontSize="36"/>
+        <Label Content="Login" Margin="373,48,-4,0" VerticalAlignment="Top" FontFamily="Agency FB" FontSize="36"/>
         <TextBox x:Name="usernameTextBox" Height="33" Margin="342,149,338,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14"/>
         <PasswordBox x:Name="passwordTextBox" Margin="342,241,338,0" VerticalAlignment="Top" Height="33" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         <Button Content="Log In" Margin="342,314,338,0" VerticalAlignment="Top" FontSize="36" FontFamily="Agency FB" Click="Button_Click_1"/>

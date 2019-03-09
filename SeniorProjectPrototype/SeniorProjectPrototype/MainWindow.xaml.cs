@@ -29,9 +29,5 @@ namespace SeniorProjectPrototype
             frame.NavigationService.Navigate(new Page1());
         }
 
-        private void TheButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

@@ -54,7 +54,7 @@ namespace SeniorProjectPrototype
         {
             bool isValid = false;
 
-            string command = "SELECT EmployeeID, EmployeeZip FROM tblEmployee WHERE EmployeeID = " + id + " AND EmployeeZip = 12345"; //+ zip + ";";
+            string command = "SELECT EmployeeID, EmployeeZip FROM tblEmployee WHERE EmployeeID = " + id + " AND EmployeeZip = " + zip + ";";
 
             MySqlCommand myCommand = new MySqlCommand(command, connection);
             connection.Open();
