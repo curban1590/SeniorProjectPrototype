@@ -9,14 +9,27 @@
       Title="Page2">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="26*"/>
+            <RowDefinition Height="97*"/>
+            <RowDefinition Height="328*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="88"/>
             <ColumnDefinition Width="40"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Image Source="Image5.png" Stretch="Fill" HorizontalAlignment="Right" Width="691" Grid.ColumnSpan="2" Grid.Column="1"/>
-        <GridSplitter Margin="15,0,19,0" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Stretch" Grid.Column="1"/>
-        <Button x:Name="button_Add_Client" Content="Add Client" Margin="10,104,18,296" VerticalAlignment="Center" Height="50" MinWidth="60" MinHeight="50" Click="Button_Add_Client_Click"/>
-        <Button x:Name="button_Add_Employee" Content="Add Employee" Margin="10,184,18,216" VerticalAlignment="Center" Height="50" MinWidth="60" MinHeight="50" Click="Button_Add_Employee_Click"/>
+        <Image Margin="0,0,25,0" Source="Images/white.jpg" Stretch="Fill" Grid.ColumnSpan="2" Grid.RowSpan="3"/>
+        <GridSplitter Margin="15,0,19,0" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Stretch" Grid.Column="1" Grid.RowSpan="3"/>
+        <Button x:Name="button_Add_Client" Click="Button_Add_Client_Click" Grid.Row="2" Margin="10,10,10,0" Height="68" VerticalAlignment="Top" Width="68" ToolTip="Add Customer">
+            <StackPanel>
+                <Image Source="Images/add_user_group-512.png" Width="40" Height="40"></Image>
+            </StackPanel>
+        </Button>
+        <Button x:Name="button_Add_Employee" Click="Button_Add_Employee_Click" Margin="10,10,10,0" Grid.Row="1" Height="68" VerticalAlignment="Top" Width="68" ToolTip="Add Employee">
+            <StackPanel>
+                <Image Source="Images/add_user_plus_male-512.png" Width="40" Height="40"></Image>
+            </StackPanel>
+        </Button>
     </Grid>
 </Page>

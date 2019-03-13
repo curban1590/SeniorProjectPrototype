@@ -29,13 +29,22 @@ namespace SeniorProjectPrototype
         {
             string username = usernameTextBox.Text;
             string password = passwordTextBox.Password;
+            bool isValid = false;
             
             MySqlManipulator mySqlManipulator = new MySqlManipulator();
 
             mySqlManipulator.login();
-
-            bool isValid = mySqlManipulator.loginCheck(username, password);
-
+            if (username != "" && password != "")
+            {
+                isValid = mySqlManipulator.loginCheck(username, password);
+            }
+            else
+            {
+                MessageBox.Show("Login Required", "Invalid Login", MessageBoxButton.OK, MessageBoxImage.Hand);
+                usernameTextBox.Clear();
+                passwordTextBox.Clear();
+                return;
+            }
             // TESTING CODE            
             Console.WriteLine(isValid);
 

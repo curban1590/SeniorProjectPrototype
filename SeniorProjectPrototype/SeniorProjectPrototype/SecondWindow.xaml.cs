@@ -19,15 +19,20 @@ namespace SeniorProjectPrototype
     /// </summary>
     public partial class SecondWindow : Window
     {
+        public Page pageToBeLoaded { get; set; }
+        public string title { get; set; }
+
         public SecondWindow()
         {
             InitializeComponent();
-            
-        }
+        } 
 
         private void Frame2_Loaded(object sender, RoutedEventArgs e)
         {
-            frame2.NavigationService.Navigate(new Page1());
+            this.Title = title;
+            frame2.NavigationService.Navigate(pageToBeLoaded);
+            
         }
+
     }
 }

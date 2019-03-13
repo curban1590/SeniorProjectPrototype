@@ -34,7 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Car %281%29.ico</ApplicationIcon>
+    <ApplicationIcon>Images\Car %281%29.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
@@ -62,9 +62,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddCustomerPage.xaml.cs">
+      <DependentUpon>AddCustomerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddEmployeePage.xaml.cs">
+      <DependentUpon>AddEmployeePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SecondWindow.xaml.cs">
       <DependentUpon>SecondWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="AddCustomerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddEmployeePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -124,31 +138,37 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Car %282%29.ico" />
+    <Resource Include="Images\Car %282%29.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Car %281%29.ico" />
+    <Resource Include="Images\Car %281%29.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Image1.png" />
+    <Resource Include="Images\Image1.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Image2.png" />
+    <Resource Include="Images\Image2.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Red X.ico" />
+    <Resource Include="Images\Red X.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Image3.png" />
+    <Resource Include="Images\Image3.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Image4.png" />
+    <Resource Include="Images\Image5.v2.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Image5.png" />
+    <Resource Include="Images\white.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Image6.png" />
+    <Resource Include="Images\add-employee-icon-png-4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\add_user_plus_male-512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\add_user_group-512.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

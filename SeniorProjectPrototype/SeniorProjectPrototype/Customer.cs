@@ -15,6 +15,13 @@ namespace SeniorProjectPrototype
         public string State { get; set; }
         public string Zip { get; set; }
         public string PhoneNum { get; set; }
+        public string Email { get; set; }
 
+        public string toSQLString()
+        {
+            return " \'" + FName + "\', \'" + LName + "\', " + StreetNum + ", \'" +
+                StreetName + "\', \'" + City + "\', \'" + State + "\', \'" + Zip + "\', \'" +
+                PhoneNum + "\', \'" + Email + "\'";
+        }
     }
 }

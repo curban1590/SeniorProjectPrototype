@@ -38,3 +38,7 @@ C:\Users\jason\Desktop\SeniorProjectPrototype\SeniorProjectPrototype\obj\Debug\P
 C:\Users\jason\Desktop\SeniorProjectPrototype\SeniorProjectPrototype\obj\Debug\Page2.baml
 C:\Users\jason\Desktop\SeniorProjectPrototype\SeniorProjectPrototype\obj\Debug\SecondWindow.g.cs
 C:\Users\jason\Desktop\SeniorProjectPrototype\SeniorProjectPrototype\obj\Debug\SecondWindow.baml
+C:\Users\jason\Desktop\SeniorProjectPrototype\SeniorProjectPrototype\obj\Debug\AddCustomerPage.g.cs
+C:\Users\jason\Desktop\SeniorProjectPrototype\SeniorProjectPrototype\obj\Debug\AddEmployeePage.g.cs
+C:\Users\jason\Desktop\SeniorProjectPrototype\SeniorProjectPrototype\obj\Debug\AddCustomerPage.baml
+C:\Users\jason\Desktop\SeniorProjectPrototype\SeniorProjectPrototype\obj\Debug\AddEmployeePage.baml

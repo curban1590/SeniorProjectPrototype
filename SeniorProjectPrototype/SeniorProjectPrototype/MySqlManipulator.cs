@@ -74,7 +74,65 @@ namespace SeniorProjectPrototype
             return isValid;
         }
 
+        public void addToTable (Employee employee)
+        {
+            string command = "SELECT MAX(EmployeeID) FROM tblEmployee";
+            int id;
+            string stringID = "";
+
+            MySqlCommand myCommand = new MySqlCommand(command, connection);
+            connection.Open();
+
+            MySqlDataReader reader = myCommand.ExecuteReader();
+            while (reader.Read())
+            {
+                id = Convert.ToInt32(reader.GetString(0));
+                id++;
+                stringID = id.ToString();
+            }
+
+            connection.Close();
+
+            command = "INSERT INTO tblEmployee VALUES (" + stringID + ", " + employee.toSQLString() + ")";
+         
+            myCommand = new MySqlCommand(command, connection);
+            connection.Open();
+            myCommand.ExecuteNonQuery();
+
+            connection.Close();
+            
         }
+
+        public void addToTable(Customer customer)
+        {
+            string command = "SELECT MAX(CustomerID) FROM tblCustomer";
+            int id;
+            string stringID = "";
+
+            MySqlCommand myCommand = new MySqlCommand(command, connection);
+            connection.Open();
+
+            MySqlDataReader reader = myCommand.ExecuteReader();
+            while (reader.Read())
+            {
+                id = Convert.ToInt32(reader.GetString(0));
+                id++;
+                stringID = id.ToString();
+            }
+
+            connection.Close();
+
+            command = "INSERT INTO tblCustomer VALUES (" + stringID + ", " + customer.toSQLString() + ")";
+            MessageBox.Show(command, "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Hand);
+
+            myCommand = new MySqlCommand(command, connection);
+            connection.Open();
+            myCommand.ExecuteNonQuery();
+
+            connection.Close();
+
+        }
+    }
 
     }
 

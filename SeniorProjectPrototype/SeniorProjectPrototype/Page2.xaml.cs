@@ -26,12 +26,20 @@ namespace SeniorProjectPrototype
 
         private void Button_Add_Client_Click(object sender, RoutedEventArgs e)
         {
-            SecondWindow addEmp = new SecondWindow();
-            addEmp.Show();
+            SecondWindow addCustomer = new SecondWindow();
+            addCustomer.pageToBeLoaded = new AddCustomerPage();
+            addCustomer.title = "Add Customer";
+            addCustomer.Show();
+            
+            
         }
 
         private void Button_Add_Employee_Click(object sender, RoutedEventArgs e)
         {
+            SecondWindow addEmployee = new SecondWindow();
+            addEmployee.pageToBeLoaded = new AddEmployeePage();
+            addEmployee.title = "Add Employee";
+            addEmployee.Show();
 
         }
     }
