@@ -68,6 +68,12 @@
     <Compile Include="AddEmployeePage.xaml.cs">
       <DependentUpon>AddEmployeePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EditCustomerPage.xaml.cs">
+      <DependentUpon>EditCustomerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditEmployeePage.xaml.cs">
+      <DependentUpon>EditEmployeePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SecondWindow.xaml.cs">
       <DependentUpon>SecondWindow.xaml</DependentUpon>
     </Compile>
@@ -78,6 +84,14 @@
     <Page Include="AddEmployeePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditCustomerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditEmployeePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -169,6 +183,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\add_user_group-512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\edit-user-512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\edit-user.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

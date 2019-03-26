@@ -12,15 +12,16 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="26*"/>
             <RowDefinition Height="97*"/>
-            <RowDefinition Height="328*"/>
+            <RowDefinition Height="93*"/>
+            <RowDefinition Height="234*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="88"/>
             <ColumnDefinition Width="40"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Image Margin="0,0,25,0" Source="Images/white.jpg" Stretch="Fill" Grid.ColumnSpan="2" Grid.RowSpan="3"/>
-        <GridSplitter Margin="15,0,19,0" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Stretch" Grid.Column="1" Grid.RowSpan="3"/>
+        <Image Margin="0,0,25,0" Source="Images/white.jpg" Stretch="Fill" Grid.ColumnSpan="2" Grid.RowSpan="4"/>
+        <GridSplitter Margin="15,0,19,0" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Stretch" Grid.Column="1" Grid.RowSpan="4"/>
         <Button x:Name="button_Add_Client" Click="Button_Add_Client_Click" Grid.Row="2" Margin="10,10,10,0" Height="68" VerticalAlignment="Top" Width="68" ToolTip="Add Customer">
             <StackPanel>
                 <Image Source="Images/add_user_group-512.png" Width="40" Height="40"></Image>
