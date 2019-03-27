@@ -29,9 +29,9 @@
             <TextBox x:Name="stateTextBox" Height="33" Margin="553,246,127,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14"/>
             <TextBox x:Name="zipTextBox" Height="33" Margin="553,303,127,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14"/>
             <TextBox x:Name="lastNameTextBox" Height="33" Margin="162,131,518,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14"/>
+            <TextBox x:Name="emailTextBox" Height="33" Margin="162,245,518,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14"/>
 
         </Grid>
-        <TextBox x:Name="emailTextBox" Height="32" Margin="168,264,514,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14"/>
 
     </Grid>
 </Page>

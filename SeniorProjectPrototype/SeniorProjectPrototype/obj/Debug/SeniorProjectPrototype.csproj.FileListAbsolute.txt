@@ -46,3 +46,5 @@ C:\Users\jason\Desktop\SeniorProjectPrototype\SeniorProjectPrototype\obj\Debug\E
 C:\Users\jason\Desktop\SeniorProjectPrototype\SeniorProjectPrototype\obj\Debug\EditEmployeePage.g.cs
 C:\Users\jason\Desktop\SeniorProjectPrototype\SeniorProjectPrototype\obj\Debug\EditCustomerPage.baml
 C:\Users\jason\Desktop\SeniorProjectPrototype\SeniorProjectPrototype\obj\Debug\EditEmployeePage.baml
+C:\Users\jason\Desktop\SeniorProjectPrototype\SeniorProjectPrototype\obj\Debug\SelectionMessageWindow.g.cs
+C:\Users\jason\Desktop\SeniorProjectPrototype\SeniorProjectPrototype\obj\Debug\SelectionMessageWindow.baml

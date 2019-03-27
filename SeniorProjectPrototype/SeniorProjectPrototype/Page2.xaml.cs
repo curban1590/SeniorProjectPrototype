@@ -26,70 +26,24 @@ namespace SeniorProjectPrototype
 
         private void Button_Add_Client_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("Would you like to add a new customer? \n (Selecting no allows you to edit customers)","Add New/Edit", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
             SecondWindow customerWin = new SecondWindow();
-
-            switch(result)
-            {
-                case MessageBoxResult.Yes:
-                    {
-                        customerWin.pageToBeLoaded = new AddCustomerPage();
-                        customerWin.title = "Add Customers";
-                        customerWin.Show();
-                        break;
-                    }
-                case MessageBoxResult.No:
-                    {
-                        customerWin.pageToBeLoaded = new EditCustomerPage();
-                        customerWin.title = "Edit Customers";
-                        customerWin.Show();
-                        break;
-                    }
-                case MessageBoxResult.Cancel:
-                    {
-                        break;
-                    }
-
-                default:
-                    break;
-            }
-
-
-
-
+            customerWin.pageToBeLoaded = new AddCustomerPage();
+            customerWin.title = "Add Customers";
+            customerWin.Show();
         }
 
         private void Button_Add_Employee_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("Would you like to add a new employee? \n (Selecting no allows you to edit employees)", "Add New/Edit", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+            SecondWindow employeeWin = new SecondWindow();       
+            employeeWin.pageToBeLoaded = new AddEmployeePage();
+            employeeWin.title = "Add Employees";
+            employeeWin.Show();
+        }
 
-            SecondWindow employeeWin = new SecondWindow();
-
-            switch (result)
-            {
-                case MessageBoxResult.Yes:
-                    {
-                        employeeWin.pageToBeLoaded = new AddEmployeePage();
-                        employeeWin.title = "Add Employees";
-                        employeeWin.Show();
-                        break;
-                    }
-                case MessageBoxResult.No:
-                    {
-                        employeeWin.pageToBeLoaded = new EditEmployeePage();
-                        employeeWin.title = "Edit Employees";
-                        employeeWin.Show();
-                        break;
-                    }
-                case MessageBoxResult.Cancel:
-                    {
-                        break;
-                    }
-
-                default:
-                    break;
-            }
-
+        private void Button_Search_Click(object sender, RoutedEventArgs e)
+        {
+            SelectionMessageWindow selectionMessage = new SelectionMessageWindow();
+            selectionMessage.Show();
         }
     }
 }
