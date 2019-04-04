@@ -1,0 +1,26 @@
+﻿<Page x:Class="SeniorProjectPrototype.Tires"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SeniorProjectPrototype"
+      mc:Ignorable="d"
+      Title="Tires">
+
+    <Grid Height="450">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="51*"/>
+            <ColumnDefinition Width="180*"/>
+            <ColumnDefinition Width="169*"/>
+            <ColumnDefinition Width="51*"/>
+        </Grid.ColumnDefinitions>
+        <Image Height="450" Width="451" Grid.ColumnSpan="4" Source="Images/tires.png"/>
+
+        <Image Margin="1,0,0,0" Source="tires.png" Stretch="Fill" Height="450" Width="450" Grid.ColumnSpan="4"/>
+        <Button Content="" Margin="0,65,71,285" Background="{x:Null}" Grid.Column="1" HorizontalAlignment="Right" Width="56"/>
+        <Button Content="" Margin="56,65,0,285" Background="{x:Null}" Grid.Column="2" HorizontalAlignment="Left" Width="55" BorderThickness="1"/>
+        <Button Content="" Margin="0,283,70,67" Background="{x:Null}" Grid.Column="1" HorizontalAlignment="Right" Width="56"/>
+        <Button Content="" Margin="58,283,0,67" Background="{x:Null}" Grid.Column="2" HorizontalAlignment="Left" Width="55"/>
+
+    </Grid>
+</Page>

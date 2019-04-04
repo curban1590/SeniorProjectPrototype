@@ -6,9 +6,53 @@
       xmlns:local="clr-namespace:SeniorProjectPrototype"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="EditCustomerPage">
-
+      Title="EditCustomerPage" Loaded="EditCustomer_Loaded">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="74*"/>
+            <RowDefinition Height="377*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="126*"/>
+            <ColumnDefinition Width="85*"/>
+            <ColumnDefinition Width="32*"/>
+            <ColumnDefinition Width="274*"/>
+            <ColumnDefinition Width="283*"/>
+        </Grid.ColumnDefinitions>
+        <ListView x:Name="customer_ListView" Margin="10,76.5,10,30" Grid.ColumnSpan="2" SelectionChanged="Customer_ListView_SelectionChanged" Grid.Row="1">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding ID, ValidatesOnExceptions=True}" Header="ID"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding FName, ValidatesOnExceptions=True}" Header="First"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding LName, ValidatesOnExceptions=True}" Header="Last"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <GridSplitter Margin="16,0,10,0" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Stretch" Grid.Column="2" Width="6" Grid.RowSpan="2"/>
+        <Label Content="Customer Search" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Agency FB" Grid.ColumnSpan="2" Height="38" Width="142"/>
+        <Label Content="First Name" HorizontalAlignment="Left" Margin="11,25.5,0,0" VerticalAlignment="Top" FontFamily="Agency FB" FontSize="20" Grid.Column="3" Height="34" Width="79" Grid.Row="1"/>
+        <Label Content="Zip Code" HorizontalAlignment="Left" Margin="13,247.5,0,0" VerticalAlignment="Top" FontFamily="Agency FB" FontSize="20" Grid.Column="4" Height="34" Width="63" Grid.Row="1"/>
+        <TextBox x:Name="firstNameTextBox" Height="33" Margin="142,25.5,21,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Grid.Column="3" Grid.Row="1"/>
+        <Button x:Name="update_Button" Content="Update" Margin="142,300,21,0" VerticalAlignment="Top" FontSize="24" FontFamily="Agency FB" Grid.Column="3" Height="32" Grid.Row="1" Click="Update_Button_Click"/>
+        <Label Content="Last Name" HorizontalAlignment="Left" Margin="11,85.5,0,0" VerticalAlignment="Top" FontFamily="Agency FB" FontSize="20" Grid.Column="3" Height="34" Width="76" Grid.Row="1"/>
+        <Label Content="Phone Number" HorizontalAlignment="Left" Margin="11,137.5,0,0" VerticalAlignment="Top" FontFamily="Agency FB" FontSize="20" Grid.Column="3" Height="34" Width="102" Grid.Row="1"/>
+        <Label Content="Email" HorizontalAlignment="Left" Margin="11,190.5,0,0" VerticalAlignment="Top" FontFamily="Agency FB" FontSize="20" Grid.Column="3" Height="34" Width="63" Grid.Row="1"/>
+        <Label Content="Street Number" HorizontalAlignment="Left" Margin="13,25.5,0,0" VerticalAlignment="Top" FontFamily="Agency FB" FontSize="20" Grid.Column="4" Height="34" Width="104" Grid.Row="1"/>
+        <Label Content="Street Name" HorizontalAlignment="Left" Margin="13,75.5,0,0" VerticalAlignment="Top" FontFamily="Agency FB" FontSize="20" Grid.Column="4" Height="34" Width="89" Grid.Row="1"/>
+        <Label Content="City" HorizontalAlignment="Left" Margin="13,137.5,0,0" VerticalAlignment="Top" FontFamily="Agency FB" FontSize="20" Grid.Column="4" Height="34" Width="34" Grid.Row="1"/>
+        <Label Content="State" HorizontalAlignment="Left" Margin="13,190.5,0,0" VerticalAlignment="Top" FontFamily="Agency FB" FontSize="20" Grid.Column="4" Height="34" Width="43" Grid.Row="1"/>
+        <TextBox x:Name="phoneNumberTextBox" Height="33" Margin="142,137.5,21,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Grid.Column="3" Grid.Row="1"/>
+        <TextBox x:Name="streetNumTextBox" Height="33" Margin="141,25.5,30,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Grid.Column="4" Grid.Row="1"/>
+        <TextBox x:Name="streetNameTextBox" Height="33" Margin="141,76.5,30,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Grid.Column="4" Grid.Row="1"/>
+        <TextBox x:Name="cityTextBox" Height="33" Margin="141,137.5,30,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Grid.Column="4" Grid.Row="1"/>
+        <TextBox x:Name="stateTextBox" Height="33" Margin="141,191.5,30,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Grid.Column="4" Grid.Row="1"/>
+        <TextBox x:Name="zipTextBox" Height="33" Margin="141,248.5,30,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Grid.Column="4" Grid.Row="1"/>
+        <TextBox x:Name="lastNameTextBox" Height="33" Margin="142,76.5,21,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Grid.Column="3" Grid.Row="1"/>
+        <TextBox x:Name="search_Textbox" Margin="10,59,4,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="23" TextChanged="Search_Textbox_TextChanged" Grid.RowSpan="2"/>
+        <Button x:Name="showAll_Button" Content="Show All" Margin="1,59,10,0" VerticalAlignment="Top" Click="ShowAll_Button_Click" Height="23" Grid.Column="1" Grid.RowSpan="2"/>
+        <TextBox x:Name="emailTextBox" Height="33" Margin="142,191.5,21,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Grid.Column="3" Background="White" Grid.Row="1"/>
+        <Button x:Name="delete_Button" Content="Delete" Margin="10,300,166,0" VerticalAlignment="Top" FontSize="24" FontFamily="Agency FB" Grid.Column="4" Height="32" Grid.Row="1" Click="Delete_Button_Click" Background="#FFFF3737"/>
+        <Button x:Name="EditVehicles_Button" Content="Edit Vehicles" Margin="142,250,21,0" VerticalAlignment="Top" FontSize="24" FontFamily="Agency FB" Grid.Column="3" Height="32" Grid.Row="1" Click="EditVehicles_Button_Click"/>
+
     </Grid>
 </Page>

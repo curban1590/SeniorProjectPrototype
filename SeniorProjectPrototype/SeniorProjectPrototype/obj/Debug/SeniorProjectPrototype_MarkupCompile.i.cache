@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\jason\Desktop\SeniorProjectPrototype\SeniorProjectPrototype\App.xaml
-92081143271
+12-986627762
 
-17-550610428
+21-1467785203
 15619423337
-AddCustomerPage.xaml;AddEmployeePage.xaml;EditCustomerPage.xaml;EditEmployeePage.xaml;MainWindow.xaml;Page1.xaml;Page2.xaml;SecondWindow.xaml;SelectionMessageWindow.xaml;
+AddCustomerPage.xaml;AddEditVehicles.xaml;AddEmployeePage.xaml;EditCustomerPage.xaml;EditEmployeePage.xaml;EditServicesWindow.xaml;MainWindow.xaml;Page1.xaml;Page2.xaml;SecondWindow.xaml;SelectionMessageWindow.xaml;Tires.xaml;
 
 True
 

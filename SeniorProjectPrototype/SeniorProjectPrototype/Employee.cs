@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SeniorProjectPrototype
 {
-    class Employee
+    public class Employee
     {
         public string ID { get; set; }
         public string FName { get; set; }

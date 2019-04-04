@@ -62,7 +62,7 @@ namespace SeniorProjectPrototype
 
             if (jobTitleBox.Text == "")
             {
-                MessageBox.Show("Job titled not selected", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Hand);
+                MessageBox.Show("Job title not selected", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Hand);
                 return;
             }
             else

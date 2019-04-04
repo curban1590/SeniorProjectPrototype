@@ -5,8 +5,9 @@ using System.Text;
 
 namespace SeniorProjectPrototype
 {
-    class Customer
+    public class Customer
     {
+        public string ID { get; set; }
         public string FName { get; set; }
         public string LName { get; set; }
         public string StreetNum { get; set; }
@@ -19,7 +20,7 @@ namespace SeniorProjectPrototype
 
         public string toSQLString()
         {
-            return " \'" + FName + "\', \'" + LName + "\', " + StreetNum + ", \'" +
+            return " \'" + FName + "\', \'" + LName + "\', \'" + StreetNum + "\', \'" +
                 StreetName + "\', \'" + City + "\', \'" + State + "\', \'" + Zip + "\', \'" +
                 PhoneNum + "\', \'" + Email + "\'";
         }

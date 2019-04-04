@@ -34,19 +34,21 @@ namespace SeniorProjectPrototype
             MySqlManipulator mySqlManipulator = new MySqlManipulator();
 
             mySqlManipulator.login();
-            if (username != "" && password != "")
+            if (IsDigitsOnly(username) && IsDigitsOnly(password))
             {
-                isValid = mySqlManipulator.loginCheck(username, password);
+
+                if (username != "" && password != "")
+                {
+                    isValid = mySqlManipulator.loginCheck(username, password);
+                }
+                else
+                {
+                    MessageBox.Show("Login Required", "Invalid Login", MessageBoxButton.OK, MessageBoxImage.Hand);
+                    usernameTextBox.Clear();
+                    passwordTextBox.Clear();
+                    return;
+                }
             }
-            else
-            {
-                MessageBox.Show("Login Required", "Invalid Login", MessageBoxButton.OK, MessageBoxImage.Hand);
-                usernameTextBox.Clear();
-                passwordTextBox.Clear();
-                return;
-            }
-            // TESTING CODE            
-            Console.WriteLine(isValid);
 
             if (!isValid)
             {
@@ -59,6 +61,25 @@ namespace SeniorProjectPrototype
                 NavigationService.Navigate(new Page2());
             }
             
+        }
+
+        private bool IsDigitsOnly(string str)
+        {
+            foreach (char c in str)
+            {
+                if (c < '0' || c > '9')
+                    return false;
+            }
+
+            return true;
+        }
+
+        private void PasswordTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                Button_Click_1(sender, new RoutedEventArgs());
+            }
         }
     }
 }

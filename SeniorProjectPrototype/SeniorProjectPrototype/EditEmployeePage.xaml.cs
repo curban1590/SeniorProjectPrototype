@@ -19,10 +19,13 @@ namespace SeniorProjectPrototype
     /// </summary>
     public partial class EditEmployeePage : Page
     {
+        private Employee selectedEmployee;
+
         public EditEmployeePage()
         {
             InitializeComponent();
         }
+
         private void EditEmployee_Loaded(object sender, RoutedEventArgs e)
         {
             MySqlManipulator mySqlManipulator = new MySqlManipulator();
@@ -60,7 +63,7 @@ namespace SeniorProjectPrototype
             employee_ListView.Items.Clear();
 
             MySqlManipulator mySqlManipulator = new MySqlManipulator();
-
+   
             mySqlManipulator.login();
 
             List<Employee> employees;
@@ -76,7 +79,6 @@ namespace SeniorProjectPrototype
 
         private void Employee_ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Employee selectedEmployee;
             try
             {
                 selectedEmployee = (Employee)e.AddedItems[0];
@@ -94,8 +96,163 @@ namespace SeniorProjectPrototype
             catch
             {
 
+            }    
+        }
+
+        private void Update_Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (selectedEmployee != null)
+            {
+                Employee employee = selectedEmployee;
+
+                #region Accesing and Error Checking textboxes
+                if (firstNameTextBox.Text == "")
+                {
+                    MessageBox.Show("First name not entered", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Hand);
+                    return;
+                }
+                else
+                {
+                    employee.FName = firstNameTextBox.Text;
+                }
+
+                if (lastNameTextBox.Text == "")
+                {
+                    MessageBox.Show("Last name not entered", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Hand);
+                    return;
+                }
+                else
+                {
+                    employee.LName = lastNameTextBox.Text;
+                }
+
+                if (phoneNumberTextBox.Text == "")
+                {
+                    MessageBox.Show("Phone number not entered", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Hand);
+                    return;
+                }
+                else
+                {
+                    employee.Phone = phoneNumberTextBox.Text;
+                }
+
+                if (streetNumTextBox.Text == "")
+                {
+                    MessageBox.Show("Street Number not entered", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Hand);
+                    return;
+                }
+                else
+                {
+                    employee.StreetNum = streetNumTextBox.Text;
+                }
+
+                if (streetNameTextBox.Text == "")
+                {
+                    MessageBox.Show("Street name not entered", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Hand);
+                    return;
+                }
+                else
+                {
+                    employee.StreetName = streetNameTextBox.Text;
+                }
+
+                if (cityTextBox.Text == "")
+                {
+                    MessageBox.Show("City not entered", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Hand);
+                    return;
+                }
+                else
+                {
+                    employee.City = cityTextBox.Text;
+                }
+
+                if (stateTextBox.Text == "")
+                {
+                    MessageBox.Show("State not entered", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Hand);
+                    return;
+                }
+                else
+                {
+                    employee.State = stateTextBox.Text;
+                }
+
+                if (zipTextBox.Text == "")
+                {
+                    MessageBox.Show("Zip not entered", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Hand);
+                    return;
+                }
+                else
+                {
+                    employee.Zip = zipTextBox.Text;
+                }
+                #endregion
+
+                MessageBoxResult result = MessageBox.Show("Are you sure you would like to update this employee?", "Confirm Update", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    MySqlManipulator mySqlManipulator = new MySqlManipulator();
+
+                    mySqlManipulator.login();
+
+                    mySqlManipulator.Update(employee);
+
+                    selectedEmployee = employee;
+
+                    MessageBox.Show("Employee Updated Succesfully", "Succesful Update", MessageBoxButton.OK);
+
+                    employee_ListView.Items.Refresh();
+                }
             }
-            
+            else
+            {
+                MessageBox.Show("Please select an Employee!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+        }
+
+        private void Delete_Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (selectedEmployee != null)
+            {
+                MessageBoxResult result = MessageBox.Show("Are you sure you would like to DELETE this employee?", "Confirm Update", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    Employee employee = selectedEmployee;
+
+                    MySqlManipulator mySqlManipulator = new MySqlManipulator();
+
+                    mySqlManipulator.login();
+
+                    mySqlManipulator.Delete(employee);
+
+                    selectedEmployee = null;
+
+                    ClearTextBoxes();
+                    search_Textbox.Clear();
+                    MessageBox.Show("Employee Deleted Succesfully", "Succesful Delete", MessageBoxButton.OK);
+
+                    ShowAll_Button_Click(sender, e);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select an Employee!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void ClearTextBoxes()
+        {
+            firstNameTextBox.Clear();
+            lastNameTextBox.Clear();
+            phoneNumberTextBox.Clear();
+            jobTitleTextBox.Clear();
+            streetNumTextBox.Clear();
+            streetNameTextBox.Clear();
+            cityTextBox.Clear();
+            stateTextBox.Clear();
+            zipTextBox.Clear();
         }
     }
 }
