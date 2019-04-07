@@ -81,6 +81,7 @@
     <Compile Include="EditServicesWindow.xaml.cs">
       <DependentUpon>EditServicesWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowsManager.cs" />
     <Compile Include="SecondWindow.xaml.cs">
       <DependentUpon>SecondWindow.xaml</DependentUpon>
     </Compile>

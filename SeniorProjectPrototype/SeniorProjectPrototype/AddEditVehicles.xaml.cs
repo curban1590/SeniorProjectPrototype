@@ -115,7 +115,7 @@ namespace SeniorProjectPrototype
 
         private void Update_Button_Click(object sender, RoutedEventArgs e)
         {
-            if (selectedCustomer != null)
+            if (selectedCar != null)
             {
                 Car car = new Car();
 
@@ -181,14 +181,14 @@ namespace SeniorProjectPrototype
 
                     selectedCar = car;
 
-                    MessageBox.Show("Vehicle Updated Succesfully", "Succesful Update", MessageBoxButton.OK);
-
                     ShowAll();
+
+                    MessageBox.Show("Vehicle Updated Succesfully", "Succesful Update", MessageBoxButton.OK); 
                 }
             }
             else
             {
-                MessageBox.Show("Please select a Vehicle!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Please select the vehicle you would like to update!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -211,9 +211,8 @@ namespace SeniorProjectPrototype
                     selectedCar = null;
 
                     ClearTextBoxes();
-                    MessageBox.Show("Vehicle Deleted Succesfully", "Succesful Delete", MessageBoxButton.OK);
-
                     ShowAll();
+                    MessageBox.Show("Vehicle Deleted Succesfully", "Succesful Delete", MessageBoxButton.OK);
                 }
             }
             else
@@ -241,6 +240,7 @@ namespace SeniorProjectPrototype
 
         private void ClearTextBoxes()
         {
+            vehicle_ListView.SelectedItem = null;
             vin_TextBox.Clear();
             year_TextBox.Clear();
             make_TextBox.Clear();

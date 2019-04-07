@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using MySql.Data.MySqlClient;
+using System.Security.Cryptography;
 
 namespace SeniorProjectPrototype
 {
@@ -121,8 +122,8 @@ namespace SeniorProjectPrototype
 
             connection.Close();
 
-            command = "INSERT INTO tblCustomer VALUES (" + stringID + ", " + customer.toSQLString() + ")";
-          
+            command = "INSERT INTO tblCustomer VALUES (" + stringID + ", " + customer.toSQLString() + ", \'" + GeneratePassword() + "\')";
+
             myCommand = new MySqlCommand(command, connection);
             connection.Open();
             myCommand.ExecuteNonQuery();
@@ -132,7 +133,6 @@ namespace SeniorProjectPrototype
 
         public void addToTable(Car car)
         {
-
             string command = "INSERT INTO tblCar VALUES (" + car.toSQLString() + ")";
 
             MySqlCommand myCommand = new MySqlCommand(command, connection);
@@ -376,6 +376,17 @@ namespace SeniorProjectPrototype
             myCommand.ExecuteNonQuery();
             connection.Close();
         }
+        
+        public void UpdatePassword(Customer customer)
+        {
+            string command = "UPDATE tblCustomer SET CustomerPassword = \'" + GeneratePassword() + "\' " +
+                "WHERE CustomerID = " + customer.ID;
+
+            MySqlCommand myCommand = new MySqlCommand(command, connection);
+            connection.Open();
+            myCommand.ExecuteNonQuery();
+            connection.Close();
+        }
 
         public void Delete(Employee employee)
         {
@@ -402,6 +413,46 @@ namespace SeniorProjectPrototype
             connection.Open();
             myCommand.ExecuteNonQuery();
             connection.Close();
+        }
+
+        private string GeneratePassword()
+        {
+            int length = 4;
+            string password;
+            RNGCryptoServiceProvider cryptRNG = new RNGCryptoServiceProvider();
+            byte[] tokenBuffer = new byte[length];
+            cryptRNG.GetBytes(tokenBuffer);
+
+            password = Convert.ToBase64String(tokenBuffer);
+
+            const string alphanumericCharacters = "!@#$%^&*()-_=+/";
+
+            StringBuilder res = new StringBuilder();
+            var aStringBuilder = new StringBuilder(password);
+            aStringBuilder.Remove(6, 2);
+
+            Random rnd = new Random();
+            length = 2;
+            while (0 < length--)
+            {
+                res.Append(alphanumericCharacters[rnd.Next(alphanumericCharacters.Length)]);
+            }
+
+            res.ToString();
+            aStringBuilder.Insert(3, res);
+            password = aStringBuilder.ToString();
+
+            rnd = new Random();
+
+            var list = new SortedList<int, char>();
+            foreach (var c in password)
+            {
+                list.Add(rnd.Next(), c);
+            }
+
+            password = new string(list.Values.ToArray());
+
+            return password;
         }
 
 

@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SeniorProjectPrototype"
-        mc:Ignorable="d" Height="450" Width="800" Title="TJCTJ Systems" WindowState="Maximized">
+        mc:Ignorable="d" Height="450" Width="800" Title="TJCTJ Systems" WindowState="Maximized" Closing="Window_Closing">
     <Grid>
         <Image Source="Images/Image5.v2.png" Stretch="Fill"/>
         <Frame x:Name="frame" Content="" Loaded="Frame_Loaded" NavigationUIVisibility="Hidden"/>

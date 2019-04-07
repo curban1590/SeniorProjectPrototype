@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SeniorProjectPrototype"
-        mc:Ignorable="d" Height="125" Width="275" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Title="Employee/Customer Selection">
+        mc:Ignorable="d" Height="125" Width="275" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Title="Employee/Customer Selection" Closing="Window_Closing">
     <Grid>
         <Button x:Name="employee_Button" Content="Employees" HorizontalAlignment="Left" Margin="164,63,0,0" VerticalAlignment="Top" Width="75" Click="Employee_Button_Click" FontSize="14"/>
         <Label Content="What would you like to&#xA;      search and edit?" HorizontalAlignment="Left" Margin="54,10,0,0" VerticalAlignment="Top" Height="48" Width="157" FontSize="14"/>

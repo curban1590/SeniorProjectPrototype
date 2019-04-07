@@ -29,5 +29,9 @@ namespace SeniorProjectPrototype
             frame.NavigationService.Navigate(new Page1());
         }
 
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown();
+        }
     }
 }

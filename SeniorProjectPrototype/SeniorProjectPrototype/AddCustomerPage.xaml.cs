@@ -126,7 +126,10 @@ namespace SeniorProjectPrototype
 
             mySqlManipulator.addToTable(customer);
 
-            MessageBox.Show(customer.FName + " " + customer.LName + " was added successfully!", "Successful", MessageBoxButton.OK, MessageBoxImage.None);
+            MessageBox.Show(customer.FName + " " + customer.LName + " was added successfully!" + 
+                "\nTheir password is generated and ready to be sent to their email.", "Successful",
+                MessageBoxButton.OK, MessageBoxImage.None);
+
             clearBoxes();
         }
 

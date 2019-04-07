@@ -11,6 +11,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Net.Mail;
+using System.Net;
+using System.Threading;
+using System.Diagnostics;
 
 namespace SeniorProjectPrototype
 {
@@ -25,8 +29,6 @@ namespace SeniorProjectPrototype
         public static RoutedCommand MyComandLogout = new RoutedCommand();
         public static RoutedCommand MyComandExit = new RoutedCommand();
         public static RoutedCommand MyComandAbout = new RoutedCommand();
-
-        private List<Window> openWindows = new List<Window>();
 
         public Page2()
         {
@@ -49,31 +51,23 @@ namespace SeniorProjectPrototype
 
             MyComandAbout.InputGestures.Add(new KeyGesture(Key.A, ModifierKeys.Control));
             CommandBindings.Add(new CommandBinding(MyComandAbout, About_MenuItem_Click));
+
+            button_Add_Employee.Focus();
         }
 
         private void Button_Add_Client_Click(object sender, RoutedEventArgs e)
         {
-            SecondWindow customerWin = new SecondWindow();
-            customerWin.pageToBeLoaded = new AddCustomerPage();
-            customerWin.title = "Add Customers";
-            customerWin.Show();
-            openWindows.Add(customerWin);
+            WindowsManeger.OpenAddClient();
         }
 
         private void Button_Add_Employee_Click(object sender, RoutedEventArgs e)
         {
-            SecondWindow employeeWin = new SecondWindow();
-            employeeWin.pageToBeLoaded = new AddEmployeePage();
-            employeeWin.title = "Add Employees";
-            employeeWin.Show();
-            openWindows.Add(employeeWin);
+            WindowsManeger.OpenAddEmployee();
         }
 
         private void Button_Search_Click(object sender, RoutedEventArgs e)
         {
-            SelectionMessageWindow selectionMessage = new SelectionMessageWindow();
-            selectionMessage.Show();
-            openWindows.Add(selectionMessage);
+            WindowsManeger.OpenSearch();
         }
 
         private void AddClient_MenuItem_Click(object sender, RoutedEventArgs e)
@@ -93,15 +87,12 @@ namespace SeniorProjectPrototype
 
         private void Logout_MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult boxResult = MessageBox.Show("Are you sure you would like to log out?", "Confirm Logout", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            MessageBoxResult boxResult = MessageBox.Show("Are you sure you would like to log out?\nLOGIN OUT WILL CLOSE ALL OPEN WINDOWS FOR THIS SESSION!", "Confirm Logout", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
             if (boxResult == MessageBoxResult.Yes)
             {
-                foreach (Window w in openWindows)
-                {
-                    w.Close();
-                }   
-                this.NavigationService.Navigate(new Page1());  
+                WindowsManeger.CloseAllWindows();
+                this.NavigationService.Navigate(new Page1());
             }
         }
 
@@ -119,6 +110,49 @@ namespace SeniorProjectPrototype
         {
             MessageBox.Show("TJCTJ Systems \nCreators:\n    Jason Diaz \n    Thomas Holzmacher \n    Twinkle Patel\n    James Pina\n    Conner Urban", "About");
         }
+        
+        private void Email_Click(object sender, RoutedEventArgs e)
+        {
+            MailMessage message = new MailMessage("tjcjtsystems@gmail.com", "jasondiaz1130@gmail.com", "Subject", "Body");
+
+            System.Net.Mail.Attachment attachment;
+            attachment = new System.Net.Mail.Attachment(@"Attachments/logo.png");
+            message.Attachments.Add(attachment);
+
+            message.IsBodyHtml = true;
+
+            try
+            {
+                SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
+                //client.Timeout = 2000;
+                client.EnableSsl = true;
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                //client.Credentials = CredentialCache.DefaultNetworkCredentials;
+                client.UseDefaultCredentials = false;
+                client.Credentials = new System.Net.NetworkCredential("tjcjtsystems@gmail.com", "Asdf1123abcd");
+                
+                Thread threadSendMails;
+                threadSendMails = new Thread(delegate()
+                {
+                    client.Send(message);
+                    MessageBox.Show("Email Sent");
+                    message.Dispose();
+                    client.Dispose();
+                });
+
+                threadSendMails.IsBackground = true;
+                threadSendMails.Start();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+    }
+}
+
+
+
 
         /** INVOICING
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
@@ -136,5 +170,4 @@ namespace SeniorProjectPrototype
             }
         }
         **/
-    }
-}
+    

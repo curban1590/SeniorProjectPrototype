@@ -260,8 +260,8 @@ namespace SeniorProjectPrototype
                 SecondWindow vehicleWin = new SecondWindow();
                 vehicleWin.title = "Add/Edit Vechicles for " + selectedCustomer.FName + " " + selectedCustomer.LName;
                 vehicleWin.pageToBeLoaded = vehiclePage;
-
                 vehicleWin.Show();
+                WindowsManeger.openWindows.Add(vehicleWin);
             }
             else
             {
@@ -269,7 +269,34 @@ namespace SeniorProjectPrototype
             }
         }
 
-        private void ClearTextBoxes()
+        private void ResetPasword_Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (selectedCustomer != null)
+            {
+                MessageBoxResult result = MessageBox.Show("Are you sure you would like to Reset this customers Password?", "Confirm Update", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    Customer customer = selectedCustomer;
+
+                    MySqlManipulator mySqlManipulator = new MySqlManipulator();
+
+                    mySqlManipulator.login();
+
+                    mySqlManipulator.UpdatePassword(customer);
+
+                    selectedCustomer.Password = customer.Password;
+
+                    MessageBox.Show("Customer password succesfully updated!\nThe customers password is ready to be sent to them", "Succesful Update", MessageBoxButton.OK);
+                }
+                }
+            else
+            {
+                MessageBox.Show("Please select a Customer!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+            private void ClearTextBoxes()
         {
             firstNameTextBox.Clear();
             lastNameTextBox.Clear();

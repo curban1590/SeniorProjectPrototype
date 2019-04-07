@@ -17,6 +17,7 @@ namespace SeniorProjectPrototype
         public string Zip { get; set; }
         public string PhoneNum { get; set; }
         public string Email { get; set; }
+        public string Password { get; set; }
 
         public string toSQLString()
         {

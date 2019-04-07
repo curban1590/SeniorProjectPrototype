@@ -26,22 +26,19 @@ namespace SeniorProjectPrototype
 
         private void Customer_Button_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
-            SecondWindow customerWin = new SecondWindow();
-
-            customerWin.pageToBeLoaded = new EditCustomerPage();
-            customerWin.title = "Search/Edit Customers";
-            customerWin.Show();
+            WindowsManeger.CloseWindow(Title);
+            WindowsManeger.OpenCustomerEdit();
         }
 
         private void Employee_Button_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
-            SecondWindow employeeWin = new SecondWindow();
+            WindowsManeger.CloseWindow(Title);
+            WindowsManeger.OpenEmployeeEdit();
+        }
 
-            employeeWin.pageToBeLoaded = new EditEmployeePage();
-            employeeWin.title = "Search/Edit Employees";
-            employeeWin.Show();
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            WindowsManeger.WindowClosing(Title);
         }
     }
 }
