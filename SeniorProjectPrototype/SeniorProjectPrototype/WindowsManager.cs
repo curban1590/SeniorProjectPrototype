@@ -73,6 +73,19 @@ namespace SeniorProjectPrototype
             }
         }
 
+        internal static void OpenAddAppointment()
+        {
+            string title = "Add Appointment";
+            if (!CheckIfOpen(title))
+            {
+                SecondWindow appointmentWin = new SecondWindow();
+                appointmentWin.pageToBeLoaded = new AddAppointmentPage();
+                appointmentWin.title = title;
+                appointmentWin.Show();
+                openWindows.Add(appointmentWin);
+            }
+        }
+
         public static void CloseAllWindows()
         {
             try
@@ -137,7 +150,5 @@ namespace SeniorProjectPrototype
             }
             return false;
         }
-
-
     }
 }

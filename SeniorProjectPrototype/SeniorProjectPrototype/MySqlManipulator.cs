@@ -225,6 +225,28 @@ namespace SeniorProjectPrototype
             return cars;
         }
 
+        public List<Mechanic> allMechanics()
+        {
+            List<Mechanic> mechanics = new List<Mechanic>();
+            Mechanic mechanic;
+
+            string command = "SELECT EmployeeID, EmployeeFName, EmployeeLName FROM tblEmployee WHERE JobTitle = 'Mechanic'";
+            MySqlCommand myCommand = new MySqlCommand(command, connection);
+            connection.Open();
+
+            MySqlDataReader reader = myCommand.ExecuteReader();
+            while (reader.Read())
+            {
+                mechanic = new Mechanic();
+                mechanic.employeeID = reader.GetInt32(0).ToString();
+                mechanic.employeeName = reader.GetString(1) + " " + reader.GetString(2);
+                mechanics.Add(mechanic);
+            }
+
+            return mechanics;
+
+        }
+
         public List<Employee> searchEmployees(string search)
         {
             List<Employee> employees = new List<Employee>();
@@ -299,6 +321,50 @@ namespace SeniorProjectPrototype
             }
             connection.Close();
             return customers;
+        }
+
+        public List<Appointment> getAppointment(string employeeID, DateTime date)
+        {
+            List<Appointment> appointments = new List<Appointment>();
+            Appointment appointment;
+
+            string command = "SELECT * FROM tblAppointment WHERE EmployeeID = " + employeeID + " AND Month(AppointmentTime) = " + date.Month + " AND DAY(AppointmentTime) = " + date.Day;
+            MySqlCommand myCommand = new MySqlCommand(command, connection);
+            connection.Open();
+
+            MySqlDataReader reader = myCommand.ExecuteReader();
+            while (reader.Read())
+            {
+                appointment = new Appointment();
+                appointment.appointmentID = reader.GetInt32(0).ToString();
+                appointment.customerID = reader.GetInt32(1).ToString();
+                appointment.employeeID = reader.GetInt32(2).ToString();
+                appointment.setDateTime(reader.GetDateTime(3));
+                appointment.appointmentDescription = reader.GetString(5);
+                appointment.duration = reader.GetInt32(6);
+                appointments.Add(appointment);
+            }
+            connection.Close();
+            return appointments;
+        }
+
+        public Service GetService(String serviceName)
+        {
+            Service service = new Service();
+            service.service = serviceName;
+
+            string command = "SELECT ServiceTime, ServicePrice FROM tblService WHERE ServiceName LIKE '" + serviceName + "'";
+
+            MySqlCommand myCommand = new MySqlCommand(command, connection);
+            connection.Open();
+
+            MySqlDataReader reader = myCommand.ExecuteReader();
+            while (reader.Read())
+            {
+                service.duration = reader.GetInt32(0);
+                service.price = Convert.ToInt32(reader.GetFloat(1));
+            }
+            return service;
         }
 
         public bool VINExists(string search)

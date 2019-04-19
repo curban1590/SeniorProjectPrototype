@@ -62,6 +62,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddAppointmentPage.xaml.cs">
+      <DependentUpon>AddAppointmentPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddCustomerPage.xaml.cs">
       <DependentUpon>AddCustomerPage.xaml</DependentUpon>
     </Compile>
@@ -71,6 +74,7 @@
     <Compile Include="AddEmployeePage.xaml.cs">
       <DependentUpon>AddEmployeePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Appointment.cs" />
     <Compile Include="Car.cs" />
     <Compile Include="EditCustomerPage.xaml.cs">
       <DependentUpon>EditCustomerPage.xaml</DependentUpon>
@@ -78,9 +82,9 @@
     <Compile Include="EditEmployeePage.xaml.cs">
       <DependentUpon>EditEmployeePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="EditServicesWindow.xaml.cs">
-      <DependentUpon>EditServicesWindow.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Mechanic.cs" />
+    <Compile Include="Service.cs" />
+    <Compile Include="SomeClass.cs" />
     <Compile Include="WindowsManager.cs" />
     <Compile Include="SecondWindow.xaml.cs">
       <DependentUpon>SecondWindow.xaml</DependentUpon>
@@ -91,6 +95,10 @@
     <Compile Include="Tires.xaml.cs">
       <DependentUpon>Tires.xaml</DependentUpon>
     </Compile>
+    <Page Include="AddAppointmentPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddCustomerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -108,10 +116,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditEmployeePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="EditServicesWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -222,6 +226,29 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\tires.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Services\ac.png" />
+    <Resource Include="Images\Services\battery.png" />
+    <Resource Include="Images\Services\dashboard.png" />
+    <Resource Include="Images\Services\engine.png" />
+    <Resource Include="Images\Services\gas.png" />
+    <Resource Include="Images\Services\gearshift.png" />
+    <Resource Include="Images\Services\mechanic.png" />
+    <Resource Include="Images\Services\oil.png" />
+    <Resource Include="Images\Services\seatbelt.png" />
+    <Resource Include="Images\Services\temperature.png" />
+    <Resource Include="Images\Services\tire.png" />
+    <Resource Include="Images\Services\windshield.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Services\doors.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Services\airbag.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Services\key.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
