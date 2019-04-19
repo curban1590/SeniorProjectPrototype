@@ -11,3 +11,6 @@ SeniorProjectPrototype/.vs/SeniorProjectPrototype/v15/.suo
 *.baml
 *.lref
 SeniorProjectPrototype/.vs/SeniorProjectPrototype/v15/Server/sqlite3/storage.ide-shm
+*.ide-shm
+SeniorProjectPrototype/.vs/SeniorProjectPrototype/v15/.suo
+*.ide-wal
