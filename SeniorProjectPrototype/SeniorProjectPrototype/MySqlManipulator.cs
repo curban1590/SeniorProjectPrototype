@@ -143,6 +143,88 @@ namespace SeniorProjectPrototype
             connection.Close();
         }
 
+        public void addToTable(Appointment appointment)
+        {
+            string command = "SELECT MAX(AppointmentID) FROM tblAppointment";
+            int id;
+            string stringID = "";
+
+            MySqlCommand myCommand = new MySqlCommand(command, connection);
+            connection.Open();
+
+            MySqlDataReader reader = myCommand.ExecuteReader();
+            while (reader.Read())
+            {
+                id = Convert.ToInt32(reader.GetString(0));
+                id++;
+                stringID = id.ToString();
+            }
+
+            connection.Close();
+
+            DateTime tempTime = appointment.getDateTime();
+            string myTime = appointment.time.ToString();
+            string startOfTime = myTime.Substring(0, myTime.Length - 2);
+            string endOfTime = myTime.Substring(myTime.Length - 2);
+
+            command = "INSERT INTO tblAppointment VALUES ('" + stringID + "', '" + appointment.customerID + "', '" + appointment.employeeID + "', '" +
+                tempTime.Year + "-" + tempTime.Month + "-" + tempTime.Day + " " + startOfTime + ":" + endOfTime + ":00', 'Scheduled', '" +
+                appointment.description + "', '" + appointment.duration + "');";
+
+            myCommand = new MySqlCommand(command, connection);
+            connection.Open();
+            myCommand.ExecuteNonQuery();
+
+            connection.Close();
+
+            command = "SELECT MAX(InvoiceID) FROM tblInvoice";
+            string InvoiceID = "";
+
+            myCommand = new MySqlCommand(command, connection);
+            connection.Open();
+
+            reader = myCommand.ExecuteReader();
+            while (reader.Read())
+            {
+                id = Convert.ToInt32(reader.GetString(0));
+                id++;
+                InvoiceID = id.ToString();
+            }
+
+            connection.Close();
+
+            int InvoiceTotal = 0;
+            foreach(Service service in appointment.services)
+            {
+                InvoiceTotal += service.price;
+            }
+
+            command = "INSERT INTO tblInvoice VALUES (" + InvoiceID + ", " + InvoiceTotal + ", 0, " + stringID + ")";
+
+            myCommand = new MySqlCommand(command, connection);
+            connection.Open();
+            myCommand.ExecuteNonQuery();
+
+            connection.Close();
+
+            command = "INSERT INTO tblInvoiceServices VALUES ";
+
+            foreach (Service service in appointment.services)
+            {
+
+                command += "(" + InvoiceID + ", " + service.getServiceID() + "), ";
+
+            }
+            command = command.Remove(command.Length-2, 2);
+            command += ";";
+
+            myCommand = new MySqlCommand(command, connection);
+            connection.Open();
+            myCommand.ExecuteNonQuery();
+
+            connection.Close();
+        }
+
         public List<Employee> allEmployees()
         {
             List<Employee> employees = new List<Employee>();

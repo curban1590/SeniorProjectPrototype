@@ -94,3 +94,5 @@ C:\Users\jason\Desktop\SeniorProjectOfficial\SeniorProjectPrototype\SeniorProjec
 C:\Users\jason\Desktop\SeniorProjectOfficial\SeniorProjectPrototype\SeniorProjectPrototype\SeniorProjectPrototype\obj\Debug\AddAppointmentPage.g.cs
 C:\Users\jason\Desktop\SeniorProjectOfficial\SeniorProjectPrototype\SeniorProjectPrototype\SeniorProjectPrototype\obj\Debug\AddAppointmentPage.baml
 C:\Users\jason\Desktop\SeniorProjectOfficial\SeniorProjectPrototype\SeniorProjectPrototype\SeniorProjectPrototype\obj\Debug\App.baml
+C:\Users\jason\Desktop\SeniorProjectOfficial\SeniorProjectPrototype\SeniorProjectPrototype\SeniorProjectPrototype\obj\Debug\AppointmentConfirmationWindow.g.cs
+C:\Users\jason\Desktop\SeniorProjectOfficial\SeniorProjectPrototype\SeniorProjectPrototype\SeniorProjectPrototype\obj\Debug\AppointmentConfirmationWindow.baml

@@ -165,7 +165,6 @@ namespace SeniorProjectPrototype
                 Thread threadSendMails;
                 threadSendMails = new Thread(delegate()
                 {
-                    MessageBox.Show("Email Click");
                     client.Send(message);
                     MessageBox.Show("Email Sent");
                     message.Dispose();
@@ -267,25 +266,25 @@ namespace SeniorProjectPrototype
                 switch (num)
                 {
                     case 0:
-                        cell.Background = Brushes.Orange;
+                        cell.Background = Brushes.LightBlue;
                         break;
                     case 1:
-                        cell.Background = Brushes.Yellow;
+                        cell.Background = Brushes.LightCoral;
                         break;
                     case 2:
-                        cell.Background = Brushes.Red;
+                        cell.Background = Brushes.LightCyan;
                         break;
                     case 3:
-                        cell.Background = Brushes.Blue;
+                        cell.Background = Brushes.LightGray;
                         break;
                     case 4:
-                        cell.Background = Brushes.Purple;
+                        cell.Background = Brushes.LightGreen;
                         break;
                     case 5:
-                        cell.Background = Brushes.Green;
+                        cell.Background = Brushes.LightPink;
                         break;
                     case 6:
-                        cell.Background = Brushes.Pink;
+                        cell.Background = Brushes.LightYellow;
                         break;
                 }
             }

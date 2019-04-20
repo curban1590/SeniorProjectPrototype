@@ -79,8 +79,21 @@ namespace SeniorProjectPrototype
             if (!CheckIfOpen(title))
             {
                 SecondWindow appointmentWin = new SecondWindow();
+                appointmentWin.ResizeMode = ResizeMode.NoResize;
                 appointmentWin.pageToBeLoaded = new AddAppointmentPage();
                 appointmentWin.title = title;
+                appointmentWin.Show();
+                openWindows.Add(appointmentWin);
+            }
+        }
+
+        public static void OpenAppConfirm(Appointment newAppointment)
+        {
+            string title = "Confirm Appointment";
+            if (!CheckIfOpen(title))
+            {
+                AppointmentConfirmationWindow appointmentWin = new AppointmentConfirmationWindow();
+                appointmentWin.appointment = newAppointment;
                 appointmentWin.Show();
                 openWindows.Add(appointmentWin);
             }

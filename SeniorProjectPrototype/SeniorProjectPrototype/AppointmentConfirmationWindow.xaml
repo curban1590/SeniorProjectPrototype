@@ -1,0 +1,24 @@
+﻿<Window x:Name="ConfirmAppointment_Window" x:Class="SeniorProjectPrototype.AppointmentConfirmationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SeniorProjectPrototype"
+        mc:Ignorable="d"
+        Title="Confirm Appointment" Height="274.903" Width="630.156" Closing="ConfirmAppointment_Window_Closing" ResizeMode="NoResize">
+    <Grid Loaded="Grid_Loaded">
+        <Label Content="Customer:" HorizontalAlignment="Left" Margin="101,10,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Agency FB"/>
+        <TextBlock x:Name="Customer_TextBlock" HorizontalAlignment="Left" Margin="168,15,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" FontSize="14"/>
+        <Label Content="Mechanic:" HorizontalAlignment="Left" Margin="101,50,0,0" VerticalAlignment="Top" FontFamily="Agency FB" FontSize="16"/>
+        <TextBlock x:Name="Mechanic_TextBlock" HorizontalAlignment="Left" Margin="168,55,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" FontSize="14"/>
+        <Label Content="Date/Time:" HorizontalAlignment="Left" Margin="401,10,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Agency FB"/>
+        <TextBlock x:Name="Datetime_TextBlock" HorizontalAlignment="Left" Margin="472,15,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" FontSize="14"/>
+        <Label Content="Duration:" HorizontalAlignment="Left" Margin="401,50,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Agency FB"/>
+        <TextBlock x:Name="Duration_TextBlock" HorizontalAlignment="Left" Margin="472,55,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" FontSize="14"/>
+        <TextBox x:Name="Description_TextBox" HorizontalAlignment="Left" Height="55" Margin="101,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="429" AcceptsReturn="True"/>
+        <Label Content="Add Description" HorizontalAlignment="Left" Margin="276,91,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Agency FB"/>
+        <Button x:Name="Book_Button" Content="Book" HorizontalAlignment="Left" Margin="168,201,0,0" VerticalAlignment="Top" Width="75" Background="#FF2FAC2F" Click="Book_Button_Click"/>
+        <Button x:Name="Cancel_Button" Content="Cancel" HorizontalAlignment="Left" Margin="392,201,0,0" VerticalAlignment="Top" Width="75" Background="#FFDA1616"/>
+
+    </Grid>
+</Window>

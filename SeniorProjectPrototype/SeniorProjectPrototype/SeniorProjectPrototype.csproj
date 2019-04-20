@@ -75,6 +75,9 @@
       <DependentUpon>AddEmployeePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Appointment.cs" />
+    <Compile Include="AppointmentConfirmationWindow.xaml.cs">
+      <DependentUpon>AppointmentConfirmationWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Car.cs" />
     <Compile Include="EditCustomerPage.xaml.cs">
       <DependentUpon>EditCustomerPage.xaml</DependentUpon>
@@ -110,6 +113,10 @@
     <Page Include="AddEmployeePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AppointmentConfirmationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditCustomerPage.xaml">
       <SubType>Designer</SubType>

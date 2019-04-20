@@ -71,8 +71,14 @@ namespace SeniorProjectPrototype
             loadAppointments();
         }
 
+        public DateTime getDate()
+        {
+            return date;
+        }
+
         public void add(int startTime, int duration, string appID, string description)
         {
+            // search for next appointID 
             foreach (Appointment app in timeSlots)
             {
                 if (app.time >= startTime && app.time < startTime + duration)
@@ -82,18 +88,47 @@ namespace SeniorProjectPrototype
                     app.appointmentDescription = description;
                 }
             }
+
+            // Call MySqlManip to add to database
         }
 
-        public bool canAdd(int startTime, int duration, string appID, string description)
+        public bool canAdd(int startTime, int duration)
         {
-            bool canBook = false;
+            bool canBook = true;
+            string durationStr = Convert.ToString(duration);
+            string startOfTime = durationStr.Substring(0, durationStr.Length - 2);
+            string endOfTime = durationStr.Substring(durationStr.Length - 2);
+            int hour = Convert.ToInt32(startOfTime);
+            int minutes = Convert.ToInt32(endOfTime);
+            int totalDurationCount = 0;
+
+            List<Appointment> appointmentsToCheck = new List<Appointment>();
             foreach (Appointment app in timeSlots)
             {
                 if (app.time >= startTime && app.time < startTime + duration)
                 {
-                    canBook = true;
+                    appointmentsToCheck.Add(app);
                 }
             }
+
+            totalDurationCount += hour * 4;
+            totalDurationCount += minutes / 15;
+
+            if (totalDurationCount <= appointmentsToCheck.Count)
+            {
+                foreach (Appointment app in appointmentsToCheck)
+                {
+                    if (app.booked)
+                    {
+                        canBook = false;
+                    }
+                }
+            }
+            else
+            {
+                canBook = false;
+            }
+
             return canBook;
         }
 

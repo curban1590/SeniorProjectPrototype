@@ -22,8 +22,16 @@ namespace SeniorProjectPrototype
         int totalPrice;
         int totalDuration;
 
+        string appointmentID;
+
+        private List<Mechanic> mechanics;
+        Appointment selectedAppointment;
+
+        Mechanic selectedMechanic;
+        bool allMechanics = false;
         Customer selectedCustomer = new Customer();
         Car selectedCar;
+        DateTime selectedDateTime;
 
         Service acService;
         Service oilService;
@@ -38,6 +46,9 @@ namespace SeniorProjectPrototype
         Service autostartService;
         Service gearShiftService;
         Service seatbeltRepairService;
+
+
+
 
         public AddAppointmentPage()
         {
@@ -60,6 +71,32 @@ namespace SeniorProjectPrototype
             Fuse_Slider.IsEnabled = false;
             Door_Slider.IsEnabled = false;
             Tire_Slider.IsEnabled = false;
+
+            setMechanics();
+        }
+
+        private void setMechanics()
+        {
+            MySqlManipulator mySqlManipulator = new MySqlManipulator();
+
+            mySqlManipulator.login();
+
+            mechanics = mySqlManipulator.allMechanics();
+
+            LoadMechanicsComboBox();
+        }
+
+        private void LoadMechanicsComboBox()
+        {
+            Mechanincs_ComboBox.Items.Clear();
+
+            foreach (Mechanic mec in mechanics)
+            {
+                mec.loadAppointments();
+                Mechanincs_ComboBox.Items.Add(mec);
+            }
+
+            Mechanincs_ComboBox.Items.Add("All Avaliable");
         }
 
         private void Search_Textbox_TextChanged(object sender, TextChangedEventArgs e)
@@ -100,6 +137,8 @@ namespace SeniorProjectPrototype
 
         private void Customer_ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            selectVehicle_Label.Visibility = Visibility.Visible;
+
             try
             {
                 selectedCar = null;
@@ -143,6 +182,7 @@ namespace SeniorProjectPrototype
             }
         }
 
+        #region Services Button Methods
         private void Diagnosis_Button_Click(object sender, RoutedEventArgs e)
         {
             if (selectedCar != null)
@@ -157,6 +197,7 @@ namespace SeniorProjectPrototype
 
                     diagnosisService = mySqlManipulator.GetService("Diagnosis");
                     diagnosisService.quantity = 1;
+                    diagnosisService.setServiceID("8");
 
                     Services_Listview.Items.Add(diagnosisService);
                 }
@@ -172,6 +213,7 @@ namespace SeniorProjectPrototype
             else
             {
                 MessageBox.Show("Please select a customer and a vehicle!", "Customer and Vechile Required", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                tabControl.SelectedItem = tabControl.Items[0];
             }
         }
 
@@ -189,6 +231,7 @@ namespace SeniorProjectPrototype
 
                     acService = mySqlManipulator.GetService("Air Filter Change");
                     acService.quantity = 1;
+                    acService.setServiceID("2");
 
                     Services_Listview.Items.Add(acService);
                 }
@@ -204,6 +247,7 @@ namespace SeniorProjectPrototype
             else
             {
                 MessageBox.Show("Please select a customer and a vehicle!", "Customer and Vechile Required", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                tabControl.SelectedItem = tabControl.Items[0];
             }
         }
 
@@ -222,6 +266,7 @@ namespace SeniorProjectPrototype
 
                     fuseService = mySqlManipulator.GetService("Dashboard Fuse");
                     fuseService.quantity = Convert.ToInt32(Fuse_Slider.Value);
+                    fuseService.setServiceID("5");
 
                     Services_Listview.Items.Add(fuseService);
                 }
@@ -238,6 +283,7 @@ namespace SeniorProjectPrototype
             else
             {
                 MessageBox.Show("Please select a customer and a vehicle!", "Customer and Vechile Required", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                tabControl.SelectedItem = tabControl.Items[0];
             }
         }
 
@@ -269,6 +315,7 @@ namespace SeniorProjectPrototype
 
                     doorService = mySqlManipulator.GetService("Door Repair");
                     doorService.quantity = Convert.ToInt32(Door_Slider.Value);
+                    doorService.setServiceID("6");
 
                     Services_Listview.Items.Add(doorService);
                 }
@@ -285,6 +332,7 @@ namespace SeniorProjectPrototype
             else
             {
                 MessageBox.Show("Please select a customer and a vehicle!", "Customer and Vechile Required", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                tabControl.SelectedItem = tabControl.Items[0];
             }
         }
 
@@ -316,6 +364,7 @@ namespace SeniorProjectPrototype
 
                     tireService = mySqlManipulator.GetService("Tire Replacement");
                     tireService.quantity = Convert.ToInt32(Tire_Slider.Value);
+                    tireService.setServiceID("4");
 
                     Services_Listview.Items.Add(tireService);
                 }
@@ -332,6 +381,7 @@ namespace SeniorProjectPrototype
             else
             {
                 MessageBox.Show("Please select a customer and a vehicle!", "Customer and Vechile Required", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                tabControl.SelectedItem = tabControl.Items[0];
             }
         }
 
@@ -362,6 +412,7 @@ namespace SeniorProjectPrototype
 
                     engineService = mySqlManipulator.GetService("Engine Flush");
                     engineService.quantity = 1;
+                    engineService.setServiceID("12");
 
                     Services_Listview.Items.Add(engineService);
                 }
@@ -377,6 +428,7 @@ namespace SeniorProjectPrototype
             else
             {
                 MessageBox.Show("Please select a customer and a vehicle!", "Customer and Vechile Required", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                tabControl.SelectedItem = tabControl.Items[0];
             }
         }
 
@@ -394,6 +446,7 @@ namespace SeniorProjectPrototype
 
                     autostartService = mySqlManipulator.GetService("Auto-start Install");
                     autostartService.quantity = 1;
+                    autostartService.setServiceID("13");
 
                     Services_Listview.Items.Add(autostartService);
                 }
@@ -409,9 +462,10 @@ namespace SeniorProjectPrototype
             else
             {
                 MessageBox.Show("Please select a customer and a vehicle!", "Customer and Vechile Required", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                tabControl.SelectedItem = tabControl.Items[0];
             }
         }
-        
+
         private void Gear_Button_Click(object sender, RoutedEventArgs e)
         {
             if (selectedCar != null)
@@ -426,6 +480,7 @@ namespace SeniorProjectPrototype
 
                     gearShiftService = mySqlManipulator.GetService("Gear Shift Repair");
                     gearShiftService.quantity = 1;
+                    gearShiftService.setServiceID("7");
 
                     Services_Listview.Items.Add(gearShiftService);
                 }
@@ -441,6 +496,7 @@ namespace SeniorProjectPrototype
             else
             {
                 MessageBox.Show("Please select a customer and a vehicle!", "Customer and Vechile Required", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                tabControl.SelectedItem = tabControl.Items[0];
             }
         }
 
@@ -458,6 +514,7 @@ namespace SeniorProjectPrototype
 
                     oilService = mySqlManipulator.GetService("Oil Change");
                     oilService.quantity = 1;
+                    oilService.setServiceID("1");
 
                     Services_Listview.Items.Add(oilService);
                 }
@@ -473,6 +530,7 @@ namespace SeniorProjectPrototype
             else
             {
                 MessageBox.Show("Please select a customer and a vehicle!", "Customer and Vechile Required", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                tabControl.SelectedItem = tabControl.Items[0];
             }
         }
 
@@ -490,6 +548,7 @@ namespace SeniorProjectPrototype
 
                     seatbeltRepairService = mySqlManipulator.GetService("Seat-belt Repair");
                     seatbeltRepairService.quantity = 1;
+                    seatbeltRepairService.setServiceID("11");
 
                     Services_Listview.Items.Add(seatbeltRepairService);
                 }
@@ -505,9 +564,10 @@ namespace SeniorProjectPrototype
             else
             {
                 MessageBox.Show("Please select a customer and a vehicle!", "Customer and Vechile Required", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                tabControl.SelectedItem = tabControl.Items[0];
             }
         }
-        
+
         private void Coolant_Button_Click(object sender, RoutedEventArgs e)
         {
             if (selectedCar != null)
@@ -522,6 +582,7 @@ namespace SeniorProjectPrototype
 
                     coolantService = mySqlManipulator.GetService("Coolant Flush");
                     coolantService.quantity = 1;
+                    coolantService.setServiceID("10");
 
                     Services_Listview.Items.Add(coolantService);
                 }
@@ -537,9 +598,10 @@ namespace SeniorProjectPrototype
             else
             {
                 MessageBox.Show("Please select a customer and a vehicle!", "Customer and Vechile Required", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                tabControl.SelectedItem = tabControl.Items[0];
             }
         }
-        
+
         private void Wiper_Button_Click(object sender, RoutedEventArgs e)
         {
             if (selectedCar != null)
@@ -554,6 +616,7 @@ namespace SeniorProjectPrototype
 
                     wiperService = mySqlManipulator.GetService("Wiper Replacement");
                     wiperService.quantity = 1;
+                    wiperService.setServiceID("3");
 
                     Services_Listview.Items.Add(wiperService);
                 }
@@ -569,6 +632,7 @@ namespace SeniorProjectPrototype
             else
             {
                 MessageBox.Show("Please select a customer and a vehicle!", "Customer and Vechile Required", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                tabControl.SelectedItem = tabControl.Items[0];
             }
         }
 
@@ -586,6 +650,7 @@ namespace SeniorProjectPrototype
 
                     batteryService = mySqlManipulator.GetService("Battery Change");
                     batteryService.quantity = 1;
+                    batteryService.setServiceID("9");
 
                     Services_Listview.Items.Add(batteryService);
                 }
@@ -601,14 +666,16 @@ namespace SeniorProjectPrototype
             else
             {
                 MessageBox.Show("Please select a customer and a vehicle!", "Customer and Vechile Required", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                tabControl.SelectedItem = tabControl.Items[0];
             }
         }
+        #endregion
 
         private void updatePrice()
         {
             totalPrice = 0;
 
-            foreach(Service service in Services_Listview.Items)
+            foreach (Service service in Services_Listview.Items)
             {
                 totalPrice += service.price;
             }
@@ -632,19 +699,19 @@ namespace SeniorProjectPrototype
 
             minutes = totalDuration;
 
-            while(minutes >= 60)
+            while (minutes >= 60)
             {
                 minutes -= 60;
                 hours += 1;
             }
 
-            if(hours == 0)
+            if (hours == 0)
             {
                 myTime = minutes + " min.";
             }
             else
             {
-                if(minutes == 0)
+                if (minutes == 0)
                 {
                     myTime = hours + ":00";
                 }
@@ -657,6 +724,300 @@ namespace SeniorProjectPrototype
             if (Duration_Label != null)
             {
                 Duration_Label.Content = myTime;
+            }
+
+            string minutesSTR;
+            if (minutes == 0)
+            {
+                minutesSTR = "00";
+            }
+            else
+            {
+                minutesSTR = minutes.ToString();
+            }
+            string durationStr = hours.ToString() + minutesSTR;
+            totalDuration = Convert.ToInt32(durationStr);
+        }
+
+        private void SelectDate_Button_Checked(object sender, RoutedEventArgs e)
+        {
+            calendar.Visibility = Visibility.Visible;
+            nextAavaliable_Button.IsChecked = false;
+            rectangle.Visibility = Visibility.Hidden;
+        }
+
+        private void NextAavaliable_Button_Checked(object sender, RoutedEventArgs e)
+        {
+            calendar.Visibility = Visibility.Hidden;
+            selectDate_Button.IsChecked = false;
+            rectangle.Visibility = Visibility.Hidden;
+        }
+
+        private void Mechanincs_ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Mechanincs_ComboBox.SelectedItem.ToString() == "All Avaliable")
+            {
+                allMechanics = true;
+            }
+            else
+            {
+                allMechanics = false;
+                selectedMechanic = mechanics.Find(x => x.employeeID == ((Mechanic)Mechanincs_ComboBox.SelectedItem).employeeID);
+            }
+        }
+
+        private void Search_Button_Click(object sender, RoutedEventArgs e)
+        {
+            appointmentListView.Items.Clear();
+            Book_Button.Visibility = Visibility.Hidden;
+
+            if (selectDate_Button.IsChecked == false && nextAavaliable_Button.IsChecked == false)
+            {
+                MessageBox.Show("Please select a date option!", "Date Required!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                rectangle.Visibility = Visibility.Visible;
+                return;
+            }
+
+            DateTime tempTime = Convert.ToDateTime(calendar.SelectedDate);
+
+            if (tempTime.DayOfWeek == DayOfWeek.Saturday || tempTime.DayOfWeek == DayOfWeek.Sunday)
+            {
+                MessageBox.Show("Closed on the weekends!\nPlease select a weekday!", "Invalid Day", MessageBoxButton.OK, MessageBoxImage.Hand);
+                return;
+            }
+            if (tempTime.Date < DateTime.Today && selectDate_Button.IsChecked == true)
+            {
+                MessageBox.Show("Cannot schedule appointment for prior day!", "Invalid Day", MessageBoxButton.OK, MessageBoxImage.Hand);
+                return;
+            }
+
+            if (selectedMechanic == null && allMechanics == false)
+            {
+                MessageBox.Show("Please select a mechanic or all!", "Mechanic Required!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+
+
+            if (allMechanics && nextAavaliable_Button.IsChecked == true)
+            {
+                List<Mechanic> localMechanics = mechanics;
+                bool foundDate = false;
+
+                foreach (Mechanic mec in localMechanics)
+                {
+                    while (!foundDate)
+                    {
+                        for (int i = 0; i < mec.timeSlots.Length; i++)
+                        {
+                            if (mec.canAdd(mec.timeSlots[i].time, totalDuration))
+                            {
+                                Appointment appointment = new Appointment();
+
+                                appointment.customerID = selectedCustomer.ID;
+                                appointment.customerName = selectedCustomer.FName + " " + selectedCustomer.LName;
+                                appointment.employeeID = mec.employeeID;
+                                appointment.employeeName = mec.employeeName;
+                                appointment.setDateTime(mec.getDate());
+                                appointment.date = (mec.getDate()).ToShortDateString();
+                                appointment.time = mec.timeSlots[i].time;
+                                appointment.duration = totalDuration;
+
+                                foreach (Service service in Services_Listview.Items)
+                                {
+                                    appointment.services.Add(service);
+                                }
+
+                                appointmentListView.Items.Add(appointment);
+
+                                foundDate = true;
+                                i = mec.timeSlots.Length;
+                            }
+                        }
+                        
+                        DateTime mecDate = mec.getDate();
+
+                        if (mecDate.DayOfWeek == DayOfWeek.Friday)
+                        {
+                            mec.setDate(mecDate.AddDays(3));
+                        }
+                        else
+                        {
+                            mec.setDate(mecDate.AddDays(1));
+                        }
+                    }
+                    foundDate = false;
+                }
+            }
+            else if (allMechanics && selectedDateTime != null)
+            {
+                List<Mechanic> localMechanics = mechanics;
+
+                foreach (Mechanic mec in localMechanics)
+                {
+                    mec.setDate(selectedDateTime);
+
+                    for (int i = 0; i < mec.timeSlots.Length; i++)
+                    {
+                        if (mec.canAdd(mec.timeSlots[i].time, totalDuration))
+                        {
+                            Appointment appointment = new Appointment();
+
+                            appointment.customerID = selectedCustomer.ID;
+                            appointment.customerName = selectedCustomer.FName + " " + selectedCustomer.LName;
+                            appointment.employeeID = mec.employeeID;
+                            appointment.employeeName = mec.employeeName;
+                            appointment.setDateTime(mec.getDate());
+                            appointment.date = (mec.getDate()).ToShortDateString();
+                            appointment.time = mec.timeSlots[i].time;
+                            appointment.duration = totalDuration;
+
+                            foreach (Service service in Services_Listview.Items)
+                            {
+                                appointment.services.Add(service);
+                            }
+
+                            appointmentListView.Items.Add(appointment);
+
+                            i = mec.timeSlots.Length;
+                        }
+                    }
+                }
+            }
+            else if (!allMechanics && nextAavaliable_Button.IsChecked == true)
+            {
+                List<Mechanic> localMechanics = mechanics;
+                Mechanic mec = localMechanics.Find(x => x.employeeID == ((Mechanic)Mechanincs_ComboBox.SelectedItem).employeeID);
+                int count = 0;
+                while (count < 15)
+                {
+                    for (int i = 0; i < mec.timeSlots.Length && count < 15; i++)
+                    {
+                        if (mec.canAdd(mec.timeSlots[i].time, totalDuration))
+                        {
+                            Appointment appointment = new Appointment();
+
+                            appointment.customerID = selectedCustomer.ID;
+                            appointment.customerName = selectedCustomer.FName + " " + selectedCustomer.LName;
+                            appointment.employeeID = mec.employeeID;
+                            appointment.employeeName = mec.employeeName;
+                            appointment.setDateTime(mec.getDate());
+                            appointment.date = (mec.getDate()).ToShortDateString();
+                            appointment.time = mec.timeSlots[i].time;
+                            appointment.duration = totalDuration;
+
+                            foreach (Service service in Services_Listview.Items)
+                            {
+                                appointment.services.Add(service);
+                            }
+
+                            appointmentListView.Items.Add(appointment);
+
+                            count++;
+                        }
+                    }
+
+                    DateTime mecDate = mec.getDate();
+
+                    if (mecDate.DayOfWeek == DayOfWeek.Friday)
+                    {
+                        mec.setDate(mecDate.AddDays(3));
+                    }
+                    else
+                    {
+                        mec.setDate(mecDate.AddDays(1));
+                    }
+                }
+            }
+            else
+            {
+                List<Mechanic> localMechanics = mechanics;
+                Mechanic mec = localMechanics.Find(x => x.employeeID == ((Mechanic)Mechanincs_ComboBox.SelectedItem).employeeID);
+                mec.setDate(selectedDateTime);
+                int count = 0;
+                while (count < 15)
+                {
+                    for (int i = 0; i < mec.timeSlots.Length && count < 15; i++)
+                    {
+                        if (mec.canAdd(mec.timeSlots[i].time, totalDuration))
+                        {
+                            Appointment appointment = new Appointment();
+
+                            appointment.customerID = selectedCustomer.ID;
+                            appointment.customerName = selectedCustomer.FName + " " + selectedCustomer.LName;
+                            appointment.employeeID = mec.employeeID;
+                            appointment.employeeName = mec.employeeName;
+                            appointment.setDateTime(mec.getDate());
+                            appointment.date = (mec.getDate()).ToShortDateString();
+                            appointment.time = mec.timeSlots[i].time;
+                            appointment.duration = totalDuration;
+
+                            foreach (Service service in Services_Listview.Items)
+                            {
+                                appointment.services.Add(service);
+                            }
+
+                            appointmentListView.Items.Add(appointment);
+
+                            count++;
+                        }
+                    }
+                    DateTime mecDate = mec.getDate();
+
+                    if (mecDate.DayOfWeek == DayOfWeek.Friday)
+                    {
+                        mec.setDate(mecDate.AddDays(3));
+                    }
+                    else
+                    {
+                        mec.setDate(mecDate.AddDays(1));
+                    }
+                }
+            }
+        }
+
+        private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DateTime tempTime = Convert.ToDateTime(calendar.SelectedDate);
+
+            if (tempTime.DayOfWeek == DayOfWeek.Saturday || tempTime.DayOfWeek == DayOfWeek.Sunday)
+            {
+                MessageBox.Show("Closed on the weekends!\nPlease select a weekday!", "Invalid Day", MessageBoxButton.OK, MessageBoxImage.Hand);
+                return;
+            }
+            if(tempTime < DateTime.Today)
+            {
+                MessageBox.Show("Cannot schedule appointment for prior day!", "Invalid Day", MessageBoxButton.OK, MessageBoxImage.Hand);
+                return;
+            }
+            selectedDateTime = Convert.ToDateTime(calendar.SelectedDate);
+            appointmentListView.Items.Clear();
+        }
+
+        private void AppointmentListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Book_Button.Visibility = Visibility.Visible;
+
+            try
+            {
+                selectedAppointment = (Appointment)e.AddedItems[0];
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void Book_Button_Click(object sender, RoutedEventArgs e)
+        {
+            appointmentListView.Items.Clear();
+            WindowsManeger.OpenAppConfirm(selectedAppointment);
+        }
+
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (tabControl.SelectedIndex == 0 || tabControl.SelectedIndex == 1)
+            {
+                appointmentListView.Items.Clear();
             }
         }
     }

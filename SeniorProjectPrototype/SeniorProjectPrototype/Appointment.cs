@@ -10,16 +10,24 @@ namespace SeniorProjectPrototype
     public class Appointment
     {
         public string appointmentID { get; set; }
+        public string customerName { get; set; }
         public string customerID { get; set; }
+        public string employeeName { get; set; }
         public string employeeID { get; set; }
         public int time { get; set; }
         public bool booked { get; set; }
         public string appointmentDescription { get; set; }
         public int duration { get; set; }
-        private DateTime dateTime;
+        public string date { get; set; }
+        public List<Service> services { get; set; }
+        public string description { get; set; }
+        
+        private DateTime dateTime;       
 
         public Appointment()
         {
+            description = "";
+            date = "";
             appointmentID = "";
             customerID = "";
             employeeID = "";
@@ -28,6 +36,9 @@ namespace SeniorProjectPrototype
             appointmentDescription = "";
             duration = 0;
             dateTime = new DateTime();
+            employeeName = "";
+            customerName = "";
+            services = new List<Service>();
         }
 
         public void setDateTime(DateTime setDateTime)
@@ -43,6 +54,11 @@ namespace SeniorProjectPrototype
             string combinedTime = dateTime.Hour.ToString() + minutes;
 
             time = Convert.ToInt32(combinedTime);
+        }
+
+        public DateTime getDateTime()
+        {
+            return dateTime;
         }
     }
 }
