@@ -14,3 +14,7 @@ SeniorProjectPrototype/.vs/SeniorProjectPrototype/v15/Server/sqlite3/storage.ide
 *.ide-shm
 SeniorProjectPrototype/.vs/SeniorProjectPrototype/v15/.suo
 *.ide-wal
+SeniorProjectPrototype/.vs/SeniorProjectPrototype/v15/.suo
+*.ide
+*.ide-shm
+*.ide-wal

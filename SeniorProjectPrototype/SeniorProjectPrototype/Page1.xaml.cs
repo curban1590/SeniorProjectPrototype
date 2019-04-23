@@ -81,5 +81,10 @@ namespace SeniorProjectPrototype
                 Button_Click_1(sender, new RoutedEventArgs());
             }
         }
+
+        private void Label_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new Page2());
+        }
     }
 }
