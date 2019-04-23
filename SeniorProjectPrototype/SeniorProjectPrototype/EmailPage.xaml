@@ -9,7 +9,7 @@
       Title="EmailPage">
 
     <Grid>
-        <ListView x:Name="customer_ListView" Margin="10,79,599,66" SelectionChanged="Customer_ListView_SelectionChanged">
+        <ListView x:Name="customer_ListView" Margin="10,79,599,81" SelectionChanged="Customer_ListView_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding ID, ValidatesOnExceptions=True}" Header="ID"/>
@@ -21,9 +21,12 @@
         <TextBox x:Name="search_Textbox" Margin="10,43,678,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="23" TextChanged="Search_Textbox_TextChanged"/>
         <Button x:Name="showAll_Button" Content="Show All" Margin="127,43,599,0" VerticalAlignment="Top" Click="ShowAll_Button_Click" Height="23"/>
         <GridSplitter Margin="227,0,567,0" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Stretch" Width="6"/>
-        <TextBox x:Name="emailSubjectTextBox" Height="23" Margin="260,43,429,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14"/>
-        <TextBox x:Name="emailBodyTextBox" Height="305" Margin="260,79,33,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14"/>
-        <Button x:Name="sendEmail_Button" Content="Send" Margin="656,399,33,0" VerticalAlignment="Top" FontSize="24" FontFamily="Agency FB" Height="32" Click="SendEmail_Button_Click"/>
+        <TextBox x:Name="emailSubjectTextBox" Height="23" Margin="326,74,233,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontSize="14"/>
+        <TextBox x:Name="emailBodyTextBox" Height="267" Margin="260,102,33,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" FontSize="18" AcceptsReturn="True"/>
+        <Button x:Name="sendEmail_Button" Content="Send" Margin="656,374,33,0" VerticalAlignment="Top" FontSize="24" FontFamily="Agency FB" Height="32" Click="SendEmail_Button_Click"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="260,74,0,0" TextWrapping="Wrap" Text="Subject:" VerticalAlignment="Top" Width="86" Height="23" FontSize="18"/>
+        <TextBox x:Name="emailTargetTextBox" Height="23" Margin="326,43,233,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Background="#FFBFBFBF" IsReadOnly="True"/>
+        <TextBlock x:Name="textBlock2" HorizontalAlignment="Left" Margin="260,41,0,0" TextWrapping="Wrap" Text="Email:" VerticalAlignment="Top" Width="86" Height="23" FontSize="18"/>
 
     </Grid>
 </Page>

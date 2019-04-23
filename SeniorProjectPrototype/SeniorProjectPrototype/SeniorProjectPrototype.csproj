@@ -88,6 +88,9 @@
     <Compile Include="EditEmployeePage.xaml.cs">
       <DependentUpon>EditEmployeePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EmailPage.xaml.cs">
+      <DependentUpon>EmailPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="JSONAppointment.cs" />
     <Compile Include="JSONCalendar.cs" />
     <Compile Include="Mechanic.cs" />
@@ -130,6 +133,10 @@
     <Page Include="EditEmployeePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EmailPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -270,6 +277,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\deadline.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\email.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

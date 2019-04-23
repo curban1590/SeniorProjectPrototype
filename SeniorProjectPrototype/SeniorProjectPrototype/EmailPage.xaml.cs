@@ -11,6 +11,13 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Net.Mail;
+using System.Net;
+using System.Threading;
+using System.Diagnostics;
+using System.Collections;
+using System.Windows.Controls.Primitives;
+using System.Windows.Threading;
 
 namespace SeniorProjectPrototype
 {
@@ -58,7 +65,7 @@ namespace SeniorProjectPrototype
             }
         }
 
-        /*private void Customer_ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Customer_ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
@@ -70,30 +77,87 @@ namespace SeniorProjectPrototype
             {
 
             }
-        }*/
+        }
+        private void ShowAll_Button_Click(object sender, RoutedEventArgs e)
+        {
+            customer_ListView.Items.Clear();
+
+            MySqlManipulator mySqlManipulator = new MySqlManipulator();
+
+            mySqlManipulator.login();
+
+            List<Customer> customers;
+
+            customers = mySqlManipulator.allCustomers();
+
+            foreach (Customer cus in customers)
+            {
+                customer_ListView.Items.Add(cus);
+            }
+        }
+
+
 
         private void SendEmail_Button_Click(object sender, RoutedEventArgs e)
         {
-            if (selectedCustomer != null)
+          
+            if (selectedCustomer != null && emailSubjectTextBox.Text != "" && emailBodyTextBox.Text != "")
             {
                 MessageBoxResult result = MessageBox.Show("Are you sure you would like to send this Email?", "Confirm Update", MessageBoxButton.YesNo, MessageBoxImage.Question);
-
+                
                 if (result == MessageBoxResult.Yes)
                 {
-                    Customer customer = selectedCustomer;
-
-                    //Put email sending thing here
-                    MySqlManipulator mySqlManipulator = new MySqlManipulator();
-
-                    mySqlManipulator.login();
-
                     
 
-                    
+                    MailMessage message = new MailMessage("tjcjtsystems@gmail.com", selectedCustomer.Email, emailSubjectTextBox.Text, emailBodyTextBox.Text);
+
+                    System.Net.Mail.Attachment attachment;
+                    attachment = new System.Net.Mail.Attachment(@"Attachments/logo.png");
+                    message.Attachments.Add(attachment);
+
+                    //message.IsBodyHtml = true;
+
+                    try
+                    {
+                        SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
+                        //client.Timeout = 2000;
+                        client.EnableSsl = true;
+                        client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                        //client.Credentials = CredentialCache.DefaultNetworkCredentials;
+                        client.UseDefaultCredentials = false;
+                        client.Credentials = new System.Net.NetworkCredential("tjcjtsystems@gmail.com", "Asdf1123abcd");
+
+                        Thread threadSendMails;
+                        threadSendMails = new Thread(delegate ()
+                        {
+                            MessageBox.Show("Email Click");
+                            client.Send(message);
+                            MessageBox.Show("Email Sent");
+                            message.Dispose();
+                            client.Dispose();
+                        });
+
+                        threadSendMails.IsBackground = true;
+                        threadSendMails.Start();
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine("Email Error: " + ex.Message);
+                    }
 
                     MessageBox.Show("Email Sent!", "Succesful Update", MessageBoxButton.OK);
                 }
             }
+            else if (emailSubjectTextBox.Text == "")
+            {
+                MessageBox.Show("Please enter a Subject!", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Hand);
+                return;
+            }
+            else if (emailBodyTextBox.Text != "")
+            {
+                MessageBox.Show("Please enter an email body!", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Hand);
+                return;
+            }            
             else
             {
                 MessageBox.Show("Please select a Customer!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -114,7 +178,11 @@ namespace SeniorProjectPrototype
         private void ClearTextBoxes(){
             emailSubjectTextBox.Clear();
             emailBodyTextBox.Clear();
-            //emailTargetTextBox.Clear();
+            emailTargetTextBox.Clear();
         }
+
+
+
+
     }
 }

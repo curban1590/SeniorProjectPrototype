@@ -225,6 +225,11 @@ namespace SeniorProjectPrototype
             WindowsManeger.OpenAddAppointment();
         }
 
+        private void Button_Email_Click(object sender, RoutedEventArgs e)
+        {
+            WindowsManeger.OpenEmail();
+        }
+
         private void FillTheDataGrid()
         {
             List<SomeClass> list = new List<SomeClass>();

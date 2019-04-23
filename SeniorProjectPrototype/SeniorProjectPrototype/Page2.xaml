@@ -14,7 +14,8 @@
             <RowDefinition Height="63*"/>
             <RowDefinition Height="34*"/>
             <RowDefinition Height="96*"/>
-            <RowDefinition Height="232*"/>
+            <RowDefinition Height="96*"/>
+            <RowDefinition Height="136*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="88"/>
@@ -24,8 +25,8 @@
             <ColumnDefinition Width="36*"/>
             <ColumnDefinition Width="61*"/>
         </Grid.ColumnDefinitions>
-        <Image Margin="0,0,25,0" Source="Images/white.jpg" Stretch="Fill" Grid.ColumnSpan="2" Grid.RowSpan="5"/>
-        <GridSplitter Margin="15,0,19,0" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Stretch" Grid.Column="1" Grid.RowSpan="5"/>
+        <Image Margin="0,0,25,0.565" Source="Images/white.jpg" Stretch="Fill" Grid.ColumnSpan="2" Grid.RowSpan="6"/>
+        <GridSplitter Margin="15,0,19,0" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Stretch" Grid.Column="1" Grid.RowSpan="6"/>
         <Button x:Name="button_Add_Client" Click="Button_Add_Client_Click" Grid.Row="3" Margin="10,10,10,0" Height="68" VerticalAlignment="Top" Width="68" ToolTip="Add Customer" Background="{x:Null}" BorderBrush="{x:Null}">
             <StackPanel>
                 <Image Source="Images/add_user_group-512.png" Width="40" Height="40"></Image>
@@ -39,6 +40,11 @@
         <Button x:Name="button_Search" Grid.Row="4" Margin="10,10,10,0" Height="68" VerticalAlignment="Top" Width="68" ToolTip="Search/Edit" Click="Button_Search_Click" Background="{x:Null}" BorderBrush="{x:Null}">
             <StackPanel>
                 <Image Source="Images/edit-user-512.png" Width="40" Height="40"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="button_Email" Grid.Row="5" Margin="10,10,10,0" VerticalAlignment="Top" Height="68" Click="Button_Email_Click" ToolTip="Email Customers" Background="{x:Null}" BorderBrush="{x:Null}">
+            <StackPanel>
+                <Image Source="Images/email.png" Width="40" Height="40"/>
             </StackPanel>
         </Button>
         <Menu Height="20" VerticalAlignment="Top" Grid.ColumnSpan="6">
@@ -65,7 +71,7 @@
                 <Image Source="Images/deadline.png" Width="40" Height="40"/>
             </StackPanel>
         </Button>
-        <DataGrid Name="dataGrid" AutoGenerateColumns="True" LoadingRow="dataGrid_LoadingRow" CanUserAddRows="False" IsReadOnly="True" Grid.Column="3" Margin="202,10,6,0" Grid.Row="3" Grid.RowSpan="2" VerticalAlignment="Top" Height="164" MouseDoubleClick="DataGrid_MouseDoubleClick"/>
+        <DataGrid Name="dataGrid" AutoGenerateColumns="True" LoadingRow="dataGrid_LoadingRow" CanUserAddRows="False" IsReadOnly="True" Grid.Column="3" Margin="202,10.058,6,0" Grid.Row="3" Grid.RowSpan="3" VerticalAlignment="Top" Height="500" MouseDoubleClick="DataGrid_MouseDoubleClick"/>
         <ComboBox x:Name="Mechanincs_ComboBox" Grid.Column="3" Margin="202,12,6,0" Grid.Row="2" VerticalAlignment="Top" SelectionChanged="Mechanincs_ComboBox_SelectionChanged"/>
         <Calendar x:Name="calendar" Grid.Column="3" HorizontalAlignment="Left" Margin="8,10,0,0" Grid.Row="3" VerticalAlignment="Top" Height="162" Grid.RowSpan="2" SelectedDatesChanged="Calendar_SelectedDatesChanged"/>
     </Grid>

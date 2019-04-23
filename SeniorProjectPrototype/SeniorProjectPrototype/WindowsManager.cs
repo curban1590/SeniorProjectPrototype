@@ -87,6 +87,19 @@ namespace SeniorProjectPrototype
             }
         }
 
+        internal static void OpenEmail()
+        {
+            string title = "Email";
+            if (!CheckIfOpen(title))
+            {
+                SecondWindow emailWin = new SecondWindow();
+                emailWin.pageToBeLoaded = new EmailPage();
+                emailWin.title = title;
+                emailWin.Show();
+                openWindows.Add(emailWin);
+            }
+        }
+
         public static void OpenAppConfirm(Appointment newAppointment)
         {
             string title = "Confirm Appointment";
