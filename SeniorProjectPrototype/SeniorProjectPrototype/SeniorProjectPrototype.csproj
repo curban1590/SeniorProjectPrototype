@@ -44,6 +44,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -78,6 +79,8 @@
     <Compile Include="AppointmentConfirmationWindow.xaml.cs">
       <DependentUpon>AppointmentConfirmationWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CalendarDate.cs" />
+    <Compile Include="CalendarMonth.cs" />
     <Compile Include="Car.cs" />
     <Compile Include="EditCustomerPage.xaml.cs">
       <DependentUpon>EditCustomerPage.xaml</DependentUpon>
@@ -85,6 +88,8 @@
     <Compile Include="EditEmployeePage.xaml.cs">
       <DependentUpon>EditEmployeePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="JSONAppointment.cs" />
+    <Compile Include="JSONCalendar.cs" />
     <Compile Include="Mechanic.cs" />
     <Compile Include="Service.cs" />
     <Compile Include="SomeClass.cs" />
@@ -256,6 +261,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Services\key.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\add_calendar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\calendar.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\deadline.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

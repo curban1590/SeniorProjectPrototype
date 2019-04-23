@@ -18,12 +18,17 @@ using System.Diagnostics;
 using System.Collections;
 using System.Windows.Controls.Primitives;
 using System.Windows.Threading;
+using System.IO;
+using System.Runtime.Serialization.Json;
+using System.Runtime.Serialization;
 
 namespace SeniorProjectPrototype
 {
     /// <summary>
     /// Interaction logic for Page2.xaml
     /// </summary>
+    
+
     public partial class Page2 : Page
     {
         public List<Mechanic> mechanics = new List<Mechanic>();
@@ -60,6 +65,7 @@ namespace SeniorProjectPrototype
 
             setMechanics();
             button_Add_Employee.Focus();
+            calendar.SelectedDate = DateTime.Today;
         }
 
         private void setMechanics()
@@ -183,9 +189,30 @@ namespace SeniorProjectPrototype
         private void Mechanincs_ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
-            { 
-                aMechanic = mechanics.Find(x => x.employeeID == ((Mechanic)Mechanincs_ComboBox.SelectedItem).employeeID);
-                FillTheDataGrid();
+            {
+                if (Mechanincs_ComboBox.SelectedItem.ToString() != "All")
+                {
+                    aMechanic = mechanics.Find(x => x.employeeID == ((Mechanic)Mechanincs_ComboBox.SelectedItem).employeeID);
+                    FillTheDataGrid();
+                }
+                else
+                {
+                    MySqlManipulator mySqlManipulator = new MySqlManipulator();
+
+                    mySqlManipulator.login();
+
+                    List<Appointment> localApp = new List<Appointment>();
+                    foreach(Mechanic mechanic in mechanics)
+                    {
+                        localApp = mySqlManipulator.getAppointment(mechanic.employeeID, Convert.ToDateTime(calendar.SelectedDate));
+                        foreach(Appointment app in localApp)
+                        {
+                            app.description = "Booked";
+                            aMechanic.add(app.time, app.duration, "1", "1", app.description);
+                        }
+                    }
+                    FillTheDataGrid();
+                }
             }
             catch
             {
@@ -284,7 +311,7 @@ namespace SeniorProjectPrototype
                         cell.Background = Brushes.LightPink;
                         break;
                     case 6:
-                        cell.Background = Brushes.LightYellow;
+                        cell.Background = Brushes.Red;
                         break;
                 }
             }
@@ -339,20 +366,56 @@ namespace SeniorProjectPrototype
             return cell;
         }
 
-        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             // http://dotnetpattern.com/wpf-datagrid-selectionmode
-            List<SomeClass> employees = new List<SomeClass>();
-
-            IList items = dataGrid.SelectedItems;
-            foreach (object item in items)
+            if (Mechanincs_ComboBox.SelectedItem.ToString() != "All")
             {
-                employees.Add(item as SomeClass);
-            }
+                List<SomeClass> employees = new List<SomeClass>();
+                string display = "";
 
-            foreach (SomeClass some in employees)
-            {
-                Console.WriteLine(some.toString());
+                IList items = dataGrid.SelectedItems;
+
+
+                foreach (object item in items)
+                {
+                    employees.Add(item as SomeClass);
+                }
+
+                foreach (Appointment appointment in aMechanic.timeSlots)
+                {
+                    if (appointment.appointmentDescription == employees[0].Description)
+                    {
+                        MySqlManipulator mySqlManipulator = new MySqlManipulator();
+
+                        mySqlManipulator.login();
+
+                        Appointment localAppointment = mySqlManipulator.getAppointment(appointment.appointmentID);
+
+                        string durationStr = Convert.ToString(localAppointment.duration);
+                        string startOfTime = durationStr.Substring(0, durationStr.Length - 2);
+                        string endOfTime = durationStr.Substring(durationStr.Length - 2);
+                        int hour = 0;
+                        if (localAppointment.duration >= 100)
+                        {
+                            hour = Convert.ToInt32(startOfTime);
+                        }
+                        int minutes = Convert.ToInt32(endOfTime);
+
+                        DateTime endTime = localAppointment.getDateTime().AddHours(hour);
+                        endTime.AddMinutes(minutes);
+
+                        display += "Customer: " + mySqlManipulator.getCustomer(appointment.customerID).FName + " " + mySqlManipulator.getCustomer(appointment.customerID).LName + "\n"
+                            + "Phone: " + mySqlManipulator.getCustomer(appointment.customerID).PhoneNum + "\n"
+                            + "Start: " + localAppointment.getDateTime() + "\n"
+                            + "End : " + endTime + "\n"
+                            + "Status: " + localAppointment.status + "\n"
+                            + "Description: " + appointment.appointmentDescription;
+
+                        MessageBox.Show(display, "Booked Appointment", MessageBoxButton.OK);
+                        return;
+                    }
+                }
             }
         }
 
@@ -367,6 +430,25 @@ namespace SeniorProjectPrototype
             Mechanincs_ComboBox.SelectedItem = aMechanic;
             FillTheDataGrid();
         }
+
+        private void JSON_MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            string filename = "Appointments.json";
+            JSONCalendar calendar = new JSONCalendar();
+
+
+            System.IO.FileStream writer = new FileStream(filename, FileMode.Create, FileAccess.Write);
+
+            DataContractJsonSerializer ser;
+            ser = new DataContractJsonSerializer(typeof(JSONCalendar));
+
+            ser.WriteObject(writer, calendar);
+            writer.Close();
+
+            MessageBox.Show("JSON Created");
+        }
+
+
     }
 }
 

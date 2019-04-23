@@ -11,35 +11,37 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="26*"/>
-            <RowDefinition Height="97*"/>
-            <RowDefinition Height="97*"/>
-            <RowDefinition Height="234*"/>
+            <RowDefinition Height="63*"/>
+            <RowDefinition Height="34*"/>
+            <RowDefinition Height="96*"/>
+            <RowDefinition Height="232*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="88"/>
             <ColumnDefinition Width="40"/>
-            <ColumnDefinition Width="295*"/>
-            <ColumnDefinition Width="183*"/>
-            <ColumnDefinition Width="194*"/>
+            <ColumnDefinition Width="49*"/>
+            <ColumnDefinition Width="190*"/>
+            <ColumnDefinition Width="36*"/>
+            <ColumnDefinition Width="61*"/>
         </Grid.ColumnDefinitions>
-        <Image Margin="0,0,25,0" Source="Images/white.jpg" Stretch="Fill" Grid.ColumnSpan="2" Grid.RowSpan="4"/>
-        <GridSplitter Margin="15,0,19,0" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Stretch" Grid.Column="1" Grid.RowSpan="4"/>
-        <Button x:Name="button_Add_Client" Click="Button_Add_Client_Click" Grid.Row="2" Margin="10,10,10,0" Height="68" VerticalAlignment="Top" Width="68" ToolTip="Add Customer" Background="{x:Null}" BorderBrush="{x:Null}">
+        <Image Margin="0,0,25,0" Source="Images/white.jpg" Stretch="Fill" Grid.ColumnSpan="2" Grid.RowSpan="5"/>
+        <GridSplitter Margin="15,0,19,0" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Stretch" Grid.Column="1" Grid.RowSpan="5"/>
+        <Button x:Name="button_Add_Client" Click="Button_Add_Client_Click" Grid.Row="3" Margin="10,10,10,0" Height="68" VerticalAlignment="Top" Width="68" ToolTip="Add Customer" Background="{x:Null}" BorderBrush="{x:Null}">
             <StackPanel>
                 <Image Source="Images/add_user_group-512.png" Width="40" Height="40"></Image>
             </StackPanel>
         </Button>
-        <Button x:Name="button_Add_Employee" Click="Button_Add_Employee_Click" Margin="10,10,10,0" Grid.Row="1" Height="68" VerticalAlignment="Top" Width="68" ToolTip="Add Employee" BorderBrush="{x:Null}" Background="{x:Null}">
+        <Button x:Name="button_Add_Employee" Click="Button_Add_Employee_Click" Margin="10,10,10,0" Grid.Row="1" Height="68" VerticalAlignment="Top" Width="68" ToolTip="Add Employee" BorderBrush="{x:Null}" Background="{x:Null}" Grid.RowSpan="2">
             <StackPanel>
                 <Image Source="Images/add_user_plus_male-512.png" Width="40" Height="40"></Image>
             </StackPanel>
         </Button>
-        <Button x:Name="button_Search" Grid.Row="3" Margin="10,10,10,0" Height="68" VerticalAlignment="Top" Width="68" ToolTip="Search/Edit" Click="Button_Search_Click" Background="{x:Null}" BorderBrush="{x:Null}">
+        <Button x:Name="button_Search" Grid.Row="4" Margin="10,10,10,0" Height="68" VerticalAlignment="Top" Width="68" ToolTip="Search/Edit" Click="Button_Search_Click" Background="{x:Null}" BorderBrush="{x:Null}">
             <StackPanel>
                 <Image Source="Images/edit-user-512.png" Width="40" Height="40"/>
             </StackPanel>
         </Button>
-        <Menu Height="20" VerticalAlignment="Top" Grid.ColumnSpan="5">
+        <Menu Height="20" VerticalAlignment="Top" Grid.ColumnSpan="6">
             <MenuItem Header="File" FontSize="14" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
                 <MenuItem Header="Add Client" Click="AddClient_MenuItem_Click" InputGestureText="Clrl + C" Height="22" Width="230"/>
                 <MenuItem Header="Add Employees" Click="AddEmployees_MenuItem_Click" InputGestureText="Clrl + E" Height="22" Width="230"/>
@@ -53,11 +55,18 @@
             <MenuItem Header="Help" FontSize="14" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
                 <MenuItem Header="About" Click="About_MenuItem_Click" InputGestureText="Clrl + A" Height="22" Width="200"/>
             </MenuItem>
+            <MenuItem Header="Json" FontSize="14">
+                <MenuItem Header="App. To Json" Click="JSON_MenuItem_Click" Height="22" Width="200"/>
+            </MenuItem>
         </Menu>
-        <Button x:Name="email" Content="Email (DO NOT PRESS PLS)" Grid.Column="2" HorizontalAlignment="Left" Margin="0,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="149" Click="Email_Click" Height="22"/>
-        <Button x:Name="button_Add_Appointment" Content="Button" Grid.Column="4" Margin="0,10,126,0" Grid.Row="2" VerticalAlignment="Top" Height="68" Click="Button_Add_Appointment_Click"/>
-        <DataGrid Name="dataGrid" AutoGenerateColumns="True" LoadingRow="dataGrid_LoadingRow" SelectionChanged="DataGrid_SelectionChanged" CanUserAddRows="False" IsReadOnly="True" Grid.Column="3" Margin="5,10,6,0" Grid.Row="2" Grid.RowSpan="2" VerticalAlignment="Top" Height="164" />
-        <ComboBox x:Name="Mechanincs_ComboBox" Grid.Column="3" HorizontalAlignment="Left" Margin="83,68,0,0" Grid.Row="1" VerticalAlignment="Top" Width="100" SelectionChanged="Mechanincs_ComboBox_SelectionChanged"/>
-        <Calendar x:Name="calendar" Grid.Column="2" HorizontalAlignment="Left" Margin="104,0,0,0" Grid.Row="2" VerticalAlignment="Top" Height="162" Grid.RowSpan="2" SelectedDatesChanged="Calendar_SelectedDatesChanged"/>
+        <Button x:Name="email" Content="Email (DO NOT PRESS PLS)" Grid.Column="2" HorizontalAlignment="Left" Margin="0,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="149" Click="Email_Click" Height="22" Grid.ColumnSpan="2"/>
+        <Button x:Name="button_Add_Appointment" Grid.Column="4" Margin="0,10,4,0" Grid.Row="3" VerticalAlignment="Top" Height="68" Click="Button_Add_Appointment_Click" Background="{x:Null}" BorderBrush="{x:Null}">
+            <StackPanel>
+                <Image Source="Images/deadline.png" Width="40" Height="40"/>
+            </StackPanel>
+        </Button>
+        <DataGrid Name="dataGrid" AutoGenerateColumns="True" LoadingRow="dataGrid_LoadingRow" CanUserAddRows="False" IsReadOnly="True" Grid.Column="3" Margin="202,10,6,0" Grid.Row="3" Grid.RowSpan="2" VerticalAlignment="Top" Height="164" MouseDoubleClick="DataGrid_MouseDoubleClick"/>
+        <ComboBox x:Name="Mechanincs_ComboBox" Grid.Column="3" Margin="202,12,6,0" Grid.Row="2" VerticalAlignment="Top" SelectionChanged="Mechanincs_ComboBox_SelectionChanged"/>
+        <Calendar x:Name="calendar" Grid.Column="3" HorizontalAlignment="Left" Margin="8,10,0,0" Grid.Row="3" VerticalAlignment="Top" Height="162" Grid.RowSpan="2" SelectedDatesChanged="Calendar_SelectedDatesChanged"/>
     </Grid>
 </Page>

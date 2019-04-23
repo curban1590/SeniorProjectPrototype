@@ -22,10 +22,8 @@ namespace SeniorProjectPrototype
         int totalPrice;
         int totalDuration;
 
-        string appointmentID;
-
         private List<Mechanic> mechanics;
-        Appointment selectedAppointment;
+        Appointment selectedAppointment = new Appointment();
 
         Mechanic selectedMechanic;
         bool allMechanics = false;
@@ -46,9 +44,6 @@ namespace SeniorProjectPrototype
         Service autostartService;
         Service gearShiftService;
         Service seatbeltRepairService;
-
-
-
 
         public AddAppointmentPage()
         {
@@ -154,14 +149,8 @@ namespace SeniorProjectPrototype
 
         private void Vehicle_ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            try
-            {
-                selectedCar = (Car)e.AddedItems[0];
-            }
-            catch
-            {
-
-            }
+            selectedCar = new Car();
+            selectedCar = (Car)e.AddedItems[0];
         }
 
         private void ShowVehicles()
@@ -195,7 +184,7 @@ namespace SeniorProjectPrototype
 
                     mySqlManipulator.login();
 
-                    diagnosisService = mySqlManipulator.GetService("Diagnosis");
+                    diagnosisService = mySqlManipulator.getService("Diagnosis");
                     diagnosisService.quantity = 1;
                     diagnosisService.setServiceID("8");
 
@@ -229,7 +218,7 @@ namespace SeniorProjectPrototype
 
                     mySqlManipulator.login();
 
-                    acService = mySqlManipulator.GetService("Air Filter Change");
+                    acService = mySqlManipulator.getService("Air Filter Change");
                     acService.quantity = 1;
                     acService.setServiceID("2");
 
@@ -264,7 +253,7 @@ namespace SeniorProjectPrototype
 
                     mySqlManipulator.login();
 
-                    fuseService = mySqlManipulator.GetService("Dashboard Fuse");
+                    fuseService = mySqlManipulator.getService("Dashboard Fuse");
                     fuseService.quantity = Convert.ToInt32(Fuse_Slider.Value);
                     fuseService.setServiceID("5");
 
@@ -313,7 +302,7 @@ namespace SeniorProjectPrototype
 
                     mySqlManipulator.login();
 
-                    doorService = mySqlManipulator.GetService("Door Repair");
+                    doorService = mySqlManipulator.getService("Door Repair");
                     doorService.quantity = Convert.ToInt32(Door_Slider.Value);
                     doorService.setServiceID("6");
 
@@ -362,7 +351,7 @@ namespace SeniorProjectPrototype
 
                     mySqlManipulator.login();
 
-                    tireService = mySqlManipulator.GetService("Tire Replacement");
+                    tireService = mySqlManipulator.getService("Tire Replacement");
                     tireService.quantity = Convert.ToInt32(Tire_Slider.Value);
                     tireService.setServiceID("4");
 
@@ -410,7 +399,7 @@ namespace SeniorProjectPrototype
 
                     mySqlManipulator.login();
 
-                    engineService = mySqlManipulator.GetService("Engine Flush");
+                    engineService = mySqlManipulator.getService("Engine Flush");
                     engineService.quantity = 1;
                     engineService.setServiceID("12");
 
@@ -444,7 +433,7 @@ namespace SeniorProjectPrototype
 
                     mySqlManipulator.login();
 
-                    autostartService = mySqlManipulator.GetService("Auto-start Install");
+                    autostartService = mySqlManipulator.getService("Auto-start Install");
                     autostartService.quantity = 1;
                     autostartService.setServiceID("13");
 
@@ -478,7 +467,7 @@ namespace SeniorProjectPrototype
 
                     mySqlManipulator.login();
 
-                    gearShiftService = mySqlManipulator.GetService("Gear Shift Repair");
+                    gearShiftService = mySqlManipulator.getService("Gear Shift Repair");
                     gearShiftService.quantity = 1;
                     gearShiftService.setServiceID("7");
 
@@ -512,7 +501,7 @@ namespace SeniorProjectPrototype
 
                     mySqlManipulator.login();
 
-                    oilService = mySqlManipulator.GetService("Oil Change");
+                    oilService = mySqlManipulator.getService("Oil Change");
                     oilService.quantity = 1;
                     oilService.setServiceID("1");
 
@@ -546,7 +535,7 @@ namespace SeniorProjectPrototype
 
                     mySqlManipulator.login();
 
-                    seatbeltRepairService = mySqlManipulator.GetService("Seat-belt Repair");
+                    seatbeltRepairService = mySqlManipulator.getService("Seat-belt Repair");
                     seatbeltRepairService.quantity = 1;
                     seatbeltRepairService.setServiceID("11");
 
@@ -580,7 +569,7 @@ namespace SeniorProjectPrototype
 
                     mySqlManipulator.login();
 
-                    coolantService = mySqlManipulator.GetService("Coolant Flush");
+                    coolantService = mySqlManipulator.getService("Coolant Flush");
                     coolantService.quantity = 1;
                     coolantService.setServiceID("10");
 
@@ -614,7 +603,7 @@ namespace SeniorProjectPrototype
 
                     mySqlManipulator.login();
 
-                    wiperService = mySqlManipulator.GetService("Wiper Replacement");
+                    wiperService = mySqlManipulator.getService("Wiper Replacement");
                     wiperService.quantity = 1;
                     wiperService.setServiceID("3");
 
@@ -648,7 +637,7 @@ namespace SeniorProjectPrototype
 
                     mySqlManipulator.login();
 
-                    batteryService = mySqlManipulator.GetService("Battery Change");
+                    batteryService = mySqlManipulator.getService("Battery Change");
                     batteryService.quantity = 1;
                     batteryService.setServiceID("9");
 
@@ -796,7 +785,6 @@ namespace SeniorProjectPrototype
                 MessageBox.Show("Please select a mechanic or all!", "Mechanic Required!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
-
 
             if (allMechanics && nextAavaliable_Button.IsChecked == true)
             {
@@ -1010,6 +998,7 @@ namespace SeniorProjectPrototype
         private void Book_Button_Click(object sender, RoutedEventArgs e)
         {
             appointmentListView.Items.Clear();
+            selectedAppointment.car = selectedCar;
             WindowsManeger.OpenAppConfirm(selectedAppointment);
         }
 

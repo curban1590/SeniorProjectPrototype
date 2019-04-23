@@ -61,7 +61,7 @@ namespace SeniorProjectPrototype
 
             foreach(Appointment app in appointments)
             {
-                add(app.time, app.duration, app.appointmentID, app.appointmentDescription);
+                add(app.time, app.duration, app.appointmentID, app.customerID, app.appointmentDescription);
             }
         }
 
@@ -76,20 +76,19 @@ namespace SeniorProjectPrototype
             return date;
         }
 
-        public void add(int startTime, int duration, string appID, string description)
+        public void add(int startTime, int duration, string appID, string cusID, string description)
         {
-            // search for next appointID 
             foreach (Appointment app in timeSlots)
             {
                 if (app.time >= startTime && app.time < startTime + duration)
                 {
+                    app.customerID = cusID;
                     app.booked = true;
                     app.appointmentID = appID;
                     app.appointmentDescription = description;
                 }
             }
 
-            // Call MySqlManip to add to database
         }
 
         public bool canAdd(int startTime, int duration)
@@ -98,7 +97,11 @@ namespace SeniorProjectPrototype
             string durationStr = Convert.ToString(duration);
             string startOfTime = durationStr.Substring(0, durationStr.Length - 2);
             string endOfTime = durationStr.Substring(durationStr.Length - 2);
-            int hour = Convert.ToInt32(startOfTime);
+            int hour = 0;
+            if (duration >= 100)
+            {
+                hour = Convert.ToInt32(startOfTime);
+            }
             int minutes = Convert.ToInt32(endOfTime);
             int totalDurationCount = 0;
 
@@ -107,7 +110,21 @@ namespace SeniorProjectPrototype
             {
                 if (app.time >= startTime && app.time < startTime + duration)
                 {
-                    appointmentsToCheck.Add(app);
+                    if (date.Date == DateTime.Today)
+                    {
+                        string appTimeSTR = Convert.ToString(app.time);
+                        string startSTR = appTimeSTR.Substring(0, appTimeSTR.Length - 2);
+                        int appHour = Convert.ToInt32(startSTR);
+
+                        if (appHour > DateTime.Now.Hour)
+                        {
+                            appointmentsToCheck.Add(app);
+                        }
+                    }
+                    else
+                    {
+                        appointmentsToCheck.Add(app);
+                    }
                 }
             }
 

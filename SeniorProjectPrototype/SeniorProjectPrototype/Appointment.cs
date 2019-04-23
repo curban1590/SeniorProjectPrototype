@@ -14,6 +14,7 @@ namespace SeniorProjectPrototype
         public string customerID { get; set; }
         public string employeeName { get; set; }
         public string employeeID { get; set; }
+        public string status { get; set; }
         public int time { get; set; }
         public bool booked { get; set; }
         public string appointmentDescription { get; set; }
@@ -21,11 +22,13 @@ namespace SeniorProjectPrototype
         public string date { get; set; }
         public List<Service> services { get; set; }
         public string description { get; set; }
+        public Car car { get; set; }
         
         private DateTime dateTime;       
 
         public Appointment()
         {
+            status = "";
             description = "";
             date = "";
             appointmentID = "";
@@ -36,6 +39,7 @@ namespace SeniorProjectPrototype
             appointmentDescription = "";
             duration = 0;
             dateTime = new DateTime();
+            car = new Car();
             employeeName = "";
             customerName = "";
             services = new List<Service>();

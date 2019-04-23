@@ -169,7 +169,7 @@ namespace SeniorProjectPrototype
 
             command = "INSERT INTO tblAppointment VALUES ('" + stringID + "', '" + appointment.customerID + "', '" + appointment.employeeID + "', '" +
                 tempTime.Year + "-" + tempTime.Month + "-" + tempTime.Day + " " + startOfTime + ":" + endOfTime + ":00', 'Scheduled', '" +
-                appointment.description + "', '" + appointment.duration + "');";
+                appointment.description + "', '" + appointment.duration + "', '" + appointment.car.VIN + "');";
 
             myCommand = new MySqlCommand(command, connection);
             connection.Open();
@@ -194,7 +194,7 @@ namespace SeniorProjectPrototype
             connection.Close();
 
             int InvoiceTotal = 0;
-            foreach(Service service in appointment.services)
+            foreach (Service service in appointment.services)
             {
                 InvoiceTotal += service.price;
             }
@@ -211,11 +211,9 @@ namespace SeniorProjectPrototype
 
             foreach (Service service in appointment.services)
             {
-
-                command += "(" + InvoiceID + ", " + service.getServiceID() + "), ";
-
+                command += "(" + InvoiceID + ", " + service.getServiceID() + ", " + service.quantity + "), ";
             }
-            command = command.Remove(command.Length-2, 2);
+            command = command.Remove(command.Length - 2, 2);
             command += ";";
 
             myCommand = new MySqlCommand(command, connection);
@@ -287,7 +285,7 @@ namespace SeniorProjectPrototype
         {
             List<Car> cars = new List<Car>();
             Car car;
-           
+
             string command = "SELECT * FROM tblCar WHERE CustomerID = " + customer.ID;
             MySqlCommand myCommand = new MySqlCommand(command, connection);
             connection.Open();
@@ -324,6 +322,7 @@ namespace SeniorProjectPrototype
                 mechanic.employeeName = reader.GetString(1) + " " + reader.GetString(2);
                 mechanics.Add(mechanic);
             }
+            connection.Close();
 
             return mechanics;
 
@@ -422,6 +421,7 @@ namespace SeniorProjectPrototype
                 appointment.customerID = reader.GetInt32(1).ToString();
                 appointment.employeeID = reader.GetInt32(2).ToString();
                 appointment.setDateTime(reader.GetDateTime(3));
+                appointment.status = reader.GetString(4);
                 appointment.appointmentDescription = reader.GetString(5);
                 appointment.duration = reader.GetInt32(6);
                 appointments.Add(appointment);
@@ -430,7 +430,129 @@ namespace SeniorProjectPrototype
             return appointments;
         }
 
-        public Service GetService(String serviceName)
+        public List<JSONAppointment> getAppointmentsFor(string month, string day)
+        {
+            List<JSONAppointment> appointments = new List<JSONAppointment>();
+            JSONAppointment appointment;
+
+            string command = "SELECT * FROM tblAppointment WHERE DAY(`AppointmentTime`) = '" + day + "' AND MONTH(AppointmentTime) = '" + month + "'";
+
+            MySqlCommand myCommand = new MySqlCommand(command, connection);
+            connection.Open();
+
+            MySqlDataReader reader = myCommand.ExecuteReader();
+            while (reader.Read())
+            {
+                appointment = new JSONAppointment();
+                appointment.appointmentID = reader.GetInt32(0).ToString();
+                appointment.setcustomerID(reader.GetInt32(1).ToString());
+                appointment.setEmployeeID(reader.GetInt32(2).ToString());
+                appointment.appointmentHour = reader.GetDateTime(3).Hour.ToString();
+                appointment.status = reader.GetString(4);
+                appointment.description = reader.GetString(5);
+                appointment.duration = reader.GetInt32(6).ToString();
+                appointment.setVinNumber(reader.GetInt32(7).ToString());
+
+                appointments.Add(appointment);
+            }
+            connection.Close();
+            return appointments;
+        }
+
+        public Customer getCustomer(string customerID)
+        {
+            Customer customer = new Customer();
+            string command = "SELECT * FROM tblCustomer WHERE CustomerID = " + customerID;
+            MySqlCommand myCommand = new MySqlCommand(command, connection);
+            connection.Open();
+
+            MySqlDataReader reader = myCommand.ExecuteReader();
+            while (reader.Read())
+            {
+                customer.ID = reader.GetInt32(0).ToString();
+                customer.FName = reader.GetString(1);
+                customer.LName = reader.GetString(2);
+                customer.StreetNum = reader.GetString(3);
+                customer.StreetName = reader.GetString(4);
+                customer.City = reader.GetString(5);
+                customer.State = reader.GetString(6);
+                customer.Zip = reader.GetString(7);
+                customer.PhoneNum = reader.GetString(8);
+                customer.Email = reader.GetString(9);
+            }
+            connection.Close();
+            return customer;
+        }
+
+        public Employee getEmployee(string employeeID)
+        {
+            Employee employee  = new Employee();
+            string command = "SELECT * FROM tblEmployee WHERE employeeID = " + employeeID;
+
+            MySqlCommand myCommand = new MySqlCommand(command, connection);
+            connection.Open();
+
+            MySqlDataReader reader = myCommand.ExecuteReader();
+            while (reader.Read())
+            {
+                employee.ID = reader.GetInt32(0).ToString();
+                employee.FName = reader.GetString(1);
+                employee.LName = reader.GetString(2);
+                employee.Phone = reader.GetString(3);
+                employee.StreetNum = reader.GetUInt32(4).ToString();
+                employee.StreetName = reader.GetString(5);
+                employee.City = reader.GetString(6);
+                employee.State = reader.GetString(7);
+                employee.Zip = reader.GetUInt32(8).ToString();
+                employee.JobTitle = reader.GetString(9);
+            }
+            connection.Close();
+            return employee;
+        }
+
+        public Car getCar(string vin)
+        {
+            Car car = new Car();
+            string command = "SELECT * FROM tblCar WHERE VinNumber = " + vin;
+            MySqlCommand myCommand = new MySqlCommand(command, connection);
+            connection.Open();
+
+            MySqlDataReader reader = myCommand.ExecuteReader();
+            while (reader.Read())
+            {
+                car.VIN = reader.GetInt32(0).ToString();
+                car.CustomerID = reader.GetInt32(1).ToString();
+                car.Year = reader.GetString(2);
+                car.Make = reader.GetString(3);
+                car.Model = reader.GetString(4);
+            }
+            connection.Close();
+            return car;
+        }
+
+        public Appointment getAppointment(string appID)
+        {
+            Appointment appointment = new Appointment();
+            string command = "SELECT * FROM tblAppointment WHERE AppointmentID = " + appID;
+            MySqlCommand myCommand = new MySqlCommand(command, connection);
+            connection.Open();
+
+            MySqlDataReader reader = myCommand.ExecuteReader();
+            while (reader.Read())
+            {
+                appointment.appointmentID = reader.GetInt32(0).ToString();
+                appointment.customerID = reader.GetInt32(1).ToString();
+                appointment.employeeID = reader.GetInt32(2).ToString();
+                appointment.setDateTime(reader.GetDateTime(3));
+                appointment.status = reader.GetString(4);
+                appointment.appointmentDescription = reader.GetString(5);
+                appointment.duration = reader.GetInt32(6);
+            }
+            connection.Close();
+            return appointment;
+        }
+
+        public Service getService(string serviceName)
         {
             Service service = new Service();
             service.service = serviceName;
@@ -446,7 +568,105 @@ namespace SeniorProjectPrototype
                 service.duration = reader.GetInt32(0);
                 service.price = Convert.ToInt32(reader.GetFloat(1));
             }
+            connection.Close();
             return service;
+        }
+
+        public Service getServiceFor(string serviceID)
+        {
+            Service service = new Service();
+
+            string command = "SELECT * FROM tblService WHERE ServiceID = '" + serviceID + "'";
+
+            MySqlCommand myCommand = new MySqlCommand(command, connection);
+            connection.Open();
+
+            MySqlDataReader reader = myCommand.ExecuteReader();
+            while (reader.Read())
+            {
+                service.service = reader.GetString(1);
+                service.description = reader.GetString(2);
+                service.duration = reader.GetInt32(3);
+                service.price = Convert.ToInt32(reader.GetFloat(4));
+            }
+            connection.Close();
+            return service;
+        }
+
+        public List<Service> getServicesFor(string appointmentID)
+        {
+            List<Service> services = new List<Service>();
+            Service service;
+
+            string command = "SELECT InvoiceID FROM tblInvoice WHERE AppointmentID = '" + appointmentID + "'";
+            string InvoiceID = "";
+
+            MySqlCommand myCommand = new MySqlCommand(command, connection);
+            connection.Open();
+
+            MySqlDataReader reader = myCommand.ExecuteReader();
+            while (reader.Read())
+            {
+                InvoiceID = reader.GetInt32(0).ToString();
+            }
+            connection.Close();
+
+            command = "SELECT * FROM tblInvoiceServices WHERE InvoiceID = '" + InvoiceID + "'";
+
+            myCommand = new MySqlCommand(command, connection);
+            connection.Open();
+
+            reader = myCommand.ExecuteReader();
+            while (reader.Read())
+            {
+                service = new Service();
+                service.setServiceID(reader.GetInt32(1).ToString());
+                service.quantity = reader.GetInt32(2);
+                services.Add(service);
+            }
+            connection.Close();
+            return services;
+        }
+
+        public List<CalendarMonth> getDistinctAppMonths()
+        {
+            List<CalendarMonth> months = new List<CalendarMonth>();
+            CalendarMonth month;
+
+
+            string command = "SELECT DISTINCT(MONTH(`AppointmentTime`)) FROM `tblAppointment`";
+
+            MySqlCommand myCommand = new MySqlCommand(command, connection);
+            connection.Open();
+
+            MySqlDataReader reader = myCommand.ExecuteReader();
+            while (reader.Read())
+            {
+                month = new CalendarMonth();
+                month.setMonth(reader.GetInt32(0).ToString());
+                months.Add(month);
+            }
+            connection.Close();
+            return months;
+        }
+
+        public List<string> getDistinctAppDayFor(string month)
+        {
+            List<string> days = new List<string>();
+
+            string command = "SELECT DISTINCT(DAY(`AppointmentTime`)) FROM `tblAppointment` WHERE MONTH(`AppointmentTime`) = " + month;
+
+            MySqlCommand myCommand = new MySqlCommand(command, connection);
+            connection.Open();
+
+            MySqlDataReader reader = myCommand.ExecuteReader();
+            while (reader.Read())
+            {
+                
+                days.Add(reader.GetInt32(0).ToString());
+            }
+            connection.Close();
+            return days;
         }
 
         public bool VINExists(string search)
@@ -524,7 +744,7 @@ namespace SeniorProjectPrototype
             myCommand.ExecuteNonQuery();
             connection.Close();
         }
-        
+
         public void UpdatePassword(Customer customer)
         {
             string command = "UPDATE tblCustomer SET CustomerPassword = \'" + GeneratePassword() + "\' " +
@@ -603,8 +823,6 @@ namespace SeniorProjectPrototype
             return password;
         }
 
-
-
     }
-    }
+}
 
