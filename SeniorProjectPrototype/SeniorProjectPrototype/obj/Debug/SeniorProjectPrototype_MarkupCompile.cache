@@ -4,17 +4,17 @@
 exe
 C#
 .cs
-C:\Users\jason\Desktop\SeniorProjectOfficial\SeniorProjectPrototype\SeniorProjectPrototype\SeniorProjectPrototype\obj\Debug\
+C:\Users\Conner\Desktop\SeniorProjectPrototype\SeniorProjectPrototype\SeniorProjectPrototype\SeniorProjectPrototype\obj\Debug\
 SeniorProjectPrototype
 none
 false
 DEBUG;TRACE
-C:\Users\jason\Desktop\SeniorProjectOfficial\SeniorProjectPrototype\SeniorProjectPrototype\SeniorProjectPrototype\App.xaml
-13833440407
+C:\Users\Conner\Desktop\SeniorProjectPrototype\SeniorProjectPrototype\SeniorProjectPrototype\SeniorProjectPrototype\App.xaml
+14-1358464685
 
-301753520088
+31745252356
 161162990980
-AddAppointmentPage.xaml;AddCustomerPage.xaml;AddEditVehicles.xaml;AddEmployeePage.xaml;AppointmentConfirmationWindow.xaml;EditCustomerPage.xaml;EditEmployeePage.xaml;MainWindow.xaml;Page1.xaml;Page2.xaml;SecondWindow.xaml;SelectionMessageWindow.xaml;Tires.xaml;
+AddAppointmentPage.xaml;AddCustomerPage.xaml;AddEditVehicles.xaml;AddEmployeePage.xaml;AppointmentConfirmationWindow.xaml;EditCustomerPage.xaml;EditEmployeePage.xaml;EmailPage.xaml;MainWindow.xaml;Page1.xaml;Page2.xaml;SecondWindow.xaml;SelectionMessageWindow.xaml;Tires.xaml;
 
 False
 

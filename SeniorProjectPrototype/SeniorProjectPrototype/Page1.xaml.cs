@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -30,35 +31,44 @@ namespace SeniorProjectPrototype
             string username = usernameTextBox.Text;
             string password = passwordTextBox.Password;
             bool isValid = false;
-            
-            MySqlManipulator mySqlManipulator = new MySqlManipulator();
 
-            mySqlManipulator.login();
-            if (IsDigitsOnly(username) && IsDigitsOnly(password))
+            if (CheckForInternetConnection())
             {
 
-                if (username != "" && password != "")
+                MySqlManipulator mySqlManipulator = new MySqlManipulator();
+
+                mySqlManipulator.login();
+                if (IsDigitsOnly(username) && IsDigitsOnly(password))
                 {
-                    isValid = mySqlManipulator.loginCheck(username, password);
+
+                    if (username != "" && password != "")
+                    {
+                        isValid = mySqlManipulator.loginCheck(username, password);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Login Required", "Invalid Login", MessageBoxButton.OK, MessageBoxImage.Hand);
+                        usernameTextBox.Clear();
+                        passwordTextBox.Clear();
+                        return;
+                    }
+                }
+
+                if (!isValid)
+                {
+                    MessageBox.Show("Not a valid Login", "Invalid Login", MessageBoxButton.OK, MessageBoxImage.Hand);
+                    usernameTextBox.Clear();
+                    passwordTextBox.Clear();
                 }
                 else
                 {
-                    MessageBox.Show("Login Required", "Invalid Login", MessageBoxButton.OK, MessageBoxImage.Hand);
-                    usernameTextBox.Clear();
-                    passwordTextBox.Clear();
-                    return;
+                    NavigationService.Navigate(new Page2());
                 }
-            }
-
-            if (!isValid)
-            {
-                MessageBox.Show("Not a valid Login", "Invalid Login", MessageBoxButton.OK, MessageBoxImage.Hand);
-                usernameTextBox.Clear();
-                passwordTextBox.Clear();
             }
             else
             {
-                NavigationService.Navigate(new Page2());
+                MessageBox.Show("Internet Connection required", "No Internet Connection", MessageBoxButton.OK,
+                    MessageBoxImage.Hand);
             }
             
         }
@@ -85,6 +95,22 @@ namespace SeniorProjectPrototype
         private void Label_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             NavigationService.Navigate(new Page2());
+        }
+
+        public static bool CheckForInternetConnection()
+        {
+            try
+            {
+                using (var client = new WebClient())
+                using (client.OpenRead("https://bcs430group3.000webhostapp.com/"))
+                {
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

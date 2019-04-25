@@ -786,6 +786,13 @@ namespace SeniorProjectPrototype
                 return;
             }
 
+            if (Services_Listview.Items.Count == 0)
+            {
+                MessageBox.Show("Please select atleast one service!", "Service Required!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                tabControl.SelectedItem = tabControl.Items[1];
+                return;
+            }
+
             if (allMechanics && nextAavaliable_Button.IsChecked == true)
             {
                 List<Mechanic> localMechanics = mechanics;
