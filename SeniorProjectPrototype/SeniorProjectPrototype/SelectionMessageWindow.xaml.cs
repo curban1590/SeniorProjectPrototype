@@ -18,22 +18,47 @@ namespace SeniorProjectPrototype
     /// </summary>
     public partial class SelectionMessageWindow : Window
     {
+        private bool isAdd = false;
 
         public SelectionMessageWindow()
         {
             InitializeComponent();
         }
 
+        public void editIsAdd(bool add)
+        {
+            isAdd = add;
+            if (isAdd)
+            {
+                search_Label.Visibility = Visibility.Hidden;
+                add_Label.Visibility = Visibility.Visible;
+            }
+        }
+
         private void Customer_Button_Click(object sender, RoutedEventArgs e)
         {
             WindowsManeger.CloseWindow(Title);
-            WindowsManeger.OpenCustomerEdit();
+            if (isAdd)
+            {
+                WindowsManeger.OpenAddClient();
+            }
+            else
+            {
+                WindowsManeger.OpenCustomerEdit();
+            }
         }
 
         private void Employee_Button_Click(object sender, RoutedEventArgs e)
         {
             WindowsManeger.CloseWindow(Title);
-            WindowsManeger.OpenEmployeeEdit();
+            if (isAdd)
+            {
+                WindowsManeger.OpenAddEmployee();
+            }
+            else
+            {
+                WindowsManeger.OpenEmployeeEdit();
+            }
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

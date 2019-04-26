@@ -4,17 +4,17 @@
 exe
 C#
 .cs
-C:\Users\Conner\Desktop\SeniorProjectPrototype\SeniorProjectPrototype\SeniorProjectPrototype\SeniorProjectPrototype\obj\Debug\
+C:\Users\jason\Desktop\SeniorProjectOfficial\SeniorProjectPrototype\SeniorProjectPrototype\SeniorProjectPrototype\obj\Debug\
 SeniorProjectPrototype
 none
 false
 DEBUG;TRACE
-C:\Users\Conner\Desktop\SeniorProjectPrototype\SeniorProjectPrototype\SeniorProjectPrototype\SeniorProjectPrototype\App.xaml
-14-1358464685
+C:\Users\jason\Desktop\SeniorProjectOfficial\SeniorProjectPrototype\SeniorProjectPrototype\SeniorProjectPrototype\App.xaml
+17126481058
 
-31745252356
+34922796347
 161162990980
-AddAppointmentPage.xaml;AddCustomerPage.xaml;AddEditVehicles.xaml;AddEmployeePage.xaml;AppointmentConfirmationWindow.xaml;EditCustomerPage.xaml;EditEmployeePage.xaml;EmailPage.xaml;MainWindow.xaml;Page1.xaml;Page2.xaml;SecondWindow.xaml;SelectionMessageWindow.xaml;Tires.xaml;
+AboutWindow.xaml;AddAppointmentPage.xaml;AddCustomerPage.xaml;AddEditVehicles.xaml;AddEmployeePage.xaml;AppointmentConfirmationWindow.xaml;EditAppointmentsPage.xaml;EditCustomerPage.xaml;EditEmployeePage.xaml;EmailPage.xaml;InvoicePage.xaml;MainWindow.xaml;Page1.xaml;Page2.xaml;SecondWindow.xaml;SelectionMessageWindow.xaml;Tires.xaml;
 
 False
 

@@ -14,7 +14,7 @@
         <Label Content="Login" Margin="361,48,352,0" VerticalAlignment="Top" FontFamily="Agency FB" FontSize="36" MouseDoubleClick="Label_MouseDoubleClick"/>
         <TextBox x:Name="usernameTextBox" Height="33" Margin="342,149,338,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14"/>
         <PasswordBox x:Name="passwordTextBox" Margin="342,241,338,0" VerticalAlignment="Top" Height="33" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" KeyDown="PasswordTextBox_KeyDown"/>
-        <Button Content="Log In" Margin="342,314,338,0" VerticalAlignment="Top" FontSize="36" FontFamily="Agency FB" Click="Button_Click_1" BorderBrush="#FF85C20D" Background="#FF85C20D"/>
+        <Button Content="Log In" Margin="342,314,338,0" VerticalAlignment="Top" FontSize="36" FontFamily="Agency FB" Click="Button_Click_1" BorderBrush="#FF02A0DE" Background="#FF02A0DE"/>
 
     </Grid>
 </Page>

@@ -31,7 +31,7 @@ namespace SeniorProjectPrototype
 
                 mySqlManipulator.login();
 
-                appointments = mySqlManipulator.getAppointmentsFor(month, day);
+                appointments = mySqlManipulator.getJSONAppointmentsFor(month, day);
             }
         }
     }

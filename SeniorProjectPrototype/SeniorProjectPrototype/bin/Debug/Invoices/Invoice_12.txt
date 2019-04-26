@@ -1,0 +1,20 @@
+INVOICE
+
+TJCJT                                                    INVOICE #           12
+1912 Riviera Lane                                 SERVICE DATE   4/22/2019 2:15:00 PM
+New York, NY 12210                            VEHICLE VIN     22435
+
+SHIP TO                                                BILL TO
+John Smith                                            Billy Bob         
+2 Court Square                                      2 Dark rd              
+New York, NY 12210                            Hoodville, California 99911                 
+________________________________________________________________________________
+________QTY__________DESCRIPTION___________UNIT PRICE__________AMOUNT____
+
+                   4                        Dashboard Fuse                               $20                                   $80                                         
+                   1                        Door Repair                                  $65                                   $65                                      
+
+
+							Total: $145
+							Sales Tax (8.875): $12.62
+							GRAND TOTAL: $157.62

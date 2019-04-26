@@ -1,0 +1,19 @@
+INVOICE
+
+TJCJT                                                    INVOICE #           20
+1912 Riviera Lane                                 SERVICE DATE   4/26/2019 12:30:00 PM
+New York, NY 12210                            VEHICLE VIN     124532
+
+SHIP TO                                                BILL TO
+John Smith                                            Jason Diaz         
+2 Court Square                                      1 Caspian Ln.              
+New York, NY 12210                            Downtown, Narnia 13245                 
+________________________________________________________________________________
+________QTY__________DESCRIPTION___________UNIT PRICE__________AMOUNT____
+
+                   1                        Oil Change                                   $100                                  $100                                      
+
+
+							Total: $100
+							Sales Tax (8.875): $8.70
+							GRAND TOTAL: $108.70

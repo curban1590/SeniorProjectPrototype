@@ -36,12 +36,16 @@ namespace SeniorProjectPrototype
             }
         }
 
-        public static void OpenSearch()
+        public static void OpenSearch(bool isAdd)
         {
             string title = "Employee/Customer Selection";
             if (!CheckIfOpen(title))
             {
                 SelectionMessageWindow selectionMessage = new SelectionMessageWindow();
+                if (isAdd)
+                {
+                    selectionMessage.editIsAdd(true);
+                }
                 selectionMessage.Show();
                 openWindows.Add(selectionMessage);
             }
@@ -87,6 +91,22 @@ namespace SeniorProjectPrototype
             }
         }
 
+        internal static void OpenEditAppointments(List<Appointment> appointments)
+        {
+            string title = "Edit Appointment";
+            if (!CheckIfOpen(title))
+            {
+                SecondWindow appointmentWin = new SecondWindow();
+                appointmentWin.ResizeMode = ResizeMode.NoResize;
+                EditAppointmentsPage page = new EditAppointmentsPage();
+                page.setAppointments(appointments);
+                appointmentWin.pageToBeLoaded = page;
+                appointmentWin.title = title;
+                appointmentWin.Show();
+                openWindows.Add(appointmentWin);
+            }
+        }
+
         internal static void OpenEmail()
         {
             string title = "Email";
@@ -97,6 +117,20 @@ namespace SeniorProjectPrototype
                 emailWin.title = title;
                 emailWin.Show();
                 openWindows.Add(emailWin);
+            }
+        }
+
+        internal static void OpenInvoice()
+        {
+            string title = "Invoice";
+            if (!CheckIfOpen(title))
+            {
+                SecondWindow invoiceWin = new SecondWindow();
+                invoiceWin.ResizeMode = ResizeMode.NoResize;
+                invoiceWin.pageToBeLoaded = new InvoicePage();
+                invoiceWin.title = title;
+                invoiceWin.Show();
+                openWindows.Add(invoiceWin);
             }
         }
 

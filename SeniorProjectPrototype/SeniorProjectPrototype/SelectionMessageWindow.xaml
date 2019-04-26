@@ -7,7 +7,8 @@
         mc:Ignorable="d" Height="125" Width="275" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Title="Employee/Customer Selection" Closing="Window_Closing">
     <Grid>
         <Button x:Name="employee_Button" Content="Employees" HorizontalAlignment="Left" Margin="164,63,0,0" VerticalAlignment="Top" Width="75" Click="Employee_Button_Click" FontSize="14"/>
-        <Label Content="What would you like to&#xA;      search and edit?" HorizontalAlignment="Left" Margin="54,10,0,0" VerticalAlignment="Top" Height="48" Width="157" FontSize="14"/>
+        <Label x:Name="search_Label" Content="What would you like to&#xA;      search and edit?" HorizontalAlignment="Left" Margin="54,10,0,0" VerticalAlignment="Top" Height="48" Width="157" FontSize="14"/>
         <Button x:Name="customer_Button" Content="Customers" HorizontalAlignment="Left" Margin="30,63,0,0" VerticalAlignment="Top" Width="75" Click="Customer_Button_Click" FontSize="14"/>
+        <Label x:Name="add_Label" Content="    What would you like to add?" HorizontalAlignment="Left" Margin="30,15,0,0" VerticalAlignment="Top" Height="48" Width="209" FontSize="14" Visibility="Hidden"/>
     </Grid>
 </Window>

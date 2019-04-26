@@ -1,0 +1,13 @@
+INVOICE
+
+TJCJT                                                    INVOICE #           {INVOICEID}
+1912 Riviera Lane                                 SERVICE DATE   {SERVICEDATE}
+New York, NY 12210                            VEHICLE VIN     {VIN}
+
+SHIP TO                                                BILL TO
+John Smith                                            {CUSTOMERNAME}         
+2 Court Square                                      {STNUM} {STNAME}              
+New York, NY 12210                            {CITY}, {STATE} {ZIP}                 
+________________________________________________________________________________
+________QTY__________DESCRIPTION___________UNIT PRICE__________AMOUNT____
+

@@ -430,7 +430,7 @@ namespace SeniorProjectPrototype
             return appointments;
         }
 
-        public List<JSONAppointment> getAppointmentsFor(string month, string day)
+        public List<JSONAppointment> getJSONAppointmentsFor(string month, string day)
         {
             List<JSONAppointment> appointments = new List<JSONAppointment>();
             JSONAppointment appointment;
@@ -453,6 +453,34 @@ namespace SeniorProjectPrototype
                 appointment.duration = reader.GetInt32(6).ToString();
                 appointment.setVinNumber(reader.GetInt32(7).ToString());
 
+                appointments.Add(appointment);
+            }
+            connection.Close();
+            return appointments;
+        }
+
+        public List<Appointment> getAppointmentsFor(string month, string day)
+        {
+            List<Appointment> appointments = new List<Appointment>();
+            Appointment appointment;
+
+            string command = "SELECT * FROM tblAppointment WHERE DAY(`AppointmentTime`) = '" + day + "' AND MONTH(AppointmentTime) = '" + month + "'";
+
+            MySqlCommand myCommand = new MySqlCommand(command, connection);
+            connection.Open();
+
+            MySqlDataReader reader = myCommand.ExecuteReader();
+            while (reader.Read())
+            {
+                appointment = new Appointment();
+                appointment.appointmentID = reader.GetInt32(0).ToString();
+                appointment.customerID = reader.GetInt32(1).ToString();
+                appointment.employeeID = reader.GetInt32(2).ToString();
+                appointment.setDateTime(reader.GetDateTime(3));
+                appointment.status = reader.GetString(4);
+                appointment.appointmentDescription = reader.GetString(5);
+                appointment.duration = reader.GetInt32(6);
+                appointment.vin = reader.GetInt32(7).ToString();
                 appointments.Add(appointment);
             }
             connection.Close();
@@ -669,6 +697,24 @@ namespace SeniorProjectPrototype
             return days;
         }
 
+        public string getInvoiceID(string appointmentID)
+        {
+            string command = "SELECT InvoiceID FROM tblInvoice WHERE AppointmentID = '" + appointmentID + "'";
+            string InvoiceID = "";
+
+            MySqlCommand myCommand = new MySqlCommand(command, connection);
+            connection.Open();
+
+            MySqlDataReader reader = myCommand.ExecuteReader();
+            while (reader.Read())
+            {
+                InvoiceID = reader.GetInt32(0).ToString();
+            }
+            connection.Close();
+
+            return InvoiceID;
+        }
+
         public bool VINExists(string search)
         {
             bool extists = false;
@@ -778,6 +824,44 @@ namespace SeniorProjectPrototype
         {
             string command = "DELETE FROM tblCar WHERE VinNumber = " + car.VIN;
             MySqlCommand myCommand = new MySqlCommand(command, connection);
+            connection.Open();
+            myCommand.ExecuteNonQuery();
+            connection.Close();
+        }
+
+        public void Delete(Appointment appointment)
+        {
+            string command1 = "DELETE FROM tblAppointment WHERE AppointmentID = " + appointment.appointmentID;
+
+            string command = "SELECT InvoiceID FROM tblInvoice WHERE AppointmentID = " + appointment.appointmentID;
+            string InvoiceID = "";
+
+            MySqlCommand sqlcommand = new MySqlCommand(command, connection);
+            connection.Open();
+
+            MySqlDataReader reader = sqlcommand.ExecuteReader();
+            while (reader.Read())
+            {
+                InvoiceID = Convert.ToString(reader.GetString(0));
+            }
+
+            connection.Close();
+
+            string command2 = "DELETE FROM tblInvoice WHERE InvoiceID = " + InvoiceID;
+
+            string command3 = "DELETE FROM tblInvoiceServices WHERE InvoiceID = " + InvoiceID;
+
+            MySqlCommand myCommand = new MySqlCommand(command3, connection);
+            connection.Open();
+            myCommand.ExecuteNonQuery();
+            connection.Close();
+
+            myCommand = new MySqlCommand(command2, connection);
+            connection.Open();
+            myCommand.ExecuteNonQuery();
+            connection.Close();
+
+            myCommand = new MySqlCommand(command1, connection);
             connection.Open();
             myCommand.ExecuteNonQuery();
             connection.Close();

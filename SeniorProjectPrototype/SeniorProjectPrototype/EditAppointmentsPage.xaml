@@ -1,0 +1,26 @@
+﻿<Page
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SeniorProjectPrototype"
+      xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="SeniorProjectPrototype.EditAppointmentsPage"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="EditAppointmentsPage">
+
+    <Grid x:Name="grid" Loaded="Grid_Loaded">
+        <ListView x:Name="appointments_ListView" HorizontalAlignment="Left" Height="200" Margin="10,129,0,0" VerticalAlignment="Top" Width="599" SelectionChanged="Appointments_ListView_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding customerName}" Header="Customer"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding date}" Header="Date/Time"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding employeeName}" Header="Mechanic"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding appointmentDescription}" Header="Description"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="delete_Button" Content="Delete" HorizontalAlignment="Left" Margin="614,129,0,0" VerticalAlignment="Top" Width="176" Height="53" FontSize="20" FontFamily="Agency FB" Background="#FFDE2A2A" Click="Delete_Button_Click"/>
+        <Label Content="Delete Appointment" HorizontalAlignment="Left" Margin="560,10,0,0" VerticalAlignment="Top" FontSize="36" FontFamily="Agency FB"/>
+    </Grid>
+</Page>

@@ -58,7 +58,6 @@ C:\Users\jason\Desktop\SeniorProjectOfficial\SeniorProjectPrototype\SeniorProjec
 C:\Users\jason\Desktop\SeniorProjectOfficial\SeniorProjectPrototype\SeniorProjectPrototype\SeniorProjectPrototype\bin\Debug\SeniorProjectPrototype.exe
 C:\Users\jason\Desktop\SeniorProjectOfficial\SeniorProjectPrototype\SeniorProjectPrototype\SeniorProjectPrototype\bin\Debug\SeniorProjectPrototype.pdb
 C:\Users\jason\Desktop\SeniorProjectOfficial\SeniorProjectPrototype\SeniorProjectPrototype\SeniorProjectPrototype\bin\Debug\MySql.Data.dll
-C:\Users\jason\Desktop\SeniorProjectOfficial\SeniorProjectPrototype\SeniorProjectPrototype\SeniorProjectPrototype\obj\Debug\SeniorProjectPrototype.csprojAssemblyReference.cache
 C:\Users\jason\Desktop\SeniorProjectOfficial\SeniorProjectPrototype\SeniorProjectPrototype\SeniorProjectPrototype\obj\Debug\AddCustomerPage.g.cs
 C:\Users\jason\Desktop\SeniorProjectOfficial\SeniorProjectPrototype\SeniorProjectPrototype\SeniorProjectPrototype\obj\Debug\AddEditVehicles.g.cs
 C:\Users\jason\Desktop\SeniorProjectOfficial\SeniorProjectPrototype\SeniorProjectPrototype\SeniorProjectPrototype\obj\Debug\AddEmployeePage.g.cs
@@ -140,3 +139,12 @@ C:\Users\Conner\Desktop\SeniorProjectPrototype\SeniorProjectPrototype\SeniorProj
 C:\Users\Conner\Desktop\SeniorProjectPrototype\SeniorProjectPrototype\SeniorProjectPrototype\SeniorProjectPrototype\obj\Debug\SeniorProjectPrototype.pdb
 C:\Users\Conner\Desktop\SeniorProjectPrototype\SeniorProjectPrototype\SeniorProjectPrototype\SeniorProjectPrototype\obj\Debug\EmailPage.g.cs
 C:\Users\Conner\Desktop\SeniorProjectPrototype\SeniorProjectPrototype\SeniorProjectPrototype\SeniorProjectPrototype\obj\Debug\EmailPage.baml
+C:\Users\jason\Desktop\SeniorProjectOfficial\SeniorProjectPrototype\SeniorProjectPrototype\SeniorProjectPrototype\obj\Debug\EmailPage.g.cs
+C:\Users\jason\Desktop\SeniorProjectOfficial\SeniorProjectPrototype\SeniorProjectPrototype\SeniorProjectPrototype\obj\Debug\EmailPage.baml
+C:\Users\jason\Desktop\SeniorProjectOfficial\SeniorProjectPrototype\SeniorProjectPrototype\SeniorProjectPrototype\obj\Debug\EditAppointmentsPage.g.cs
+C:\Users\jason\Desktop\SeniorProjectOfficial\SeniorProjectPrototype\SeniorProjectPrototype\SeniorProjectPrototype\obj\Debug\EditAppointmentsPage.baml
+C:\Users\jason\Desktop\SeniorProjectOfficial\SeniorProjectPrototype\SeniorProjectPrototype\SeniorProjectPrototype\obj\Debug\AboutWindow.g.cs
+C:\Users\jason\Desktop\SeniorProjectOfficial\SeniorProjectPrototype\SeniorProjectPrototype\SeniorProjectPrototype\obj\Debug\AboutWindow.baml
+C:\Users\jason\Desktop\SeniorProjectOfficial\SeniorProjectPrototype\SeniorProjectPrototype\SeniorProjectPrototype\obj\Debug\SeniorProjectPrototype.csprojAssemblyReference.cache
+C:\Users\jason\Desktop\SeniorProjectOfficial\SeniorProjectPrototype\SeniorProjectPrototype\SeniorProjectPrototype\obj\Debug\InvoicePage.g.cs
+C:\Users\jason\Desktop\SeniorProjectOfficial\SeniorProjectPrototype\SeniorProjectPrototype\SeniorProjectPrototype\obj\Debug\InvoicePage.baml

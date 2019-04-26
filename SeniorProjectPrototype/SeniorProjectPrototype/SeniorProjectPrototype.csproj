@@ -34,7 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Images\Car %281%29.ico</ApplicationIcon>
+    <ApplicationIcon>Car.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
@@ -63,6 +63,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AboutWindow.xaml.cs">
+      <DependentUpon>AboutWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddAppointmentPage.xaml.cs">
       <DependentUpon>AddAppointmentPage.xaml</DependentUpon>
     </Compile>
@@ -82,6 +85,9 @@
     <Compile Include="CalendarDate.cs" />
     <Compile Include="CalendarMonth.cs" />
     <Compile Include="Car.cs" />
+    <Compile Include="EditAppointmentsPage.xaml.cs">
+      <DependentUpon>EditAppointmentsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EditCustomerPage.xaml.cs">
       <DependentUpon>EditCustomerPage.xaml</DependentUpon>
     </Compile>
@@ -90,6 +96,9 @@
     </Compile>
     <Compile Include="EmailPage.xaml.cs">
       <DependentUpon>EmailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InvoicePage.xaml.cs">
+      <DependentUpon>InvoicePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="JSONAppointment.cs" />
     <Compile Include="JSONCalendar.cs" />
@@ -106,6 +115,10 @@
     <Compile Include="Tires.xaml.cs">
       <DependentUpon>Tires.xaml</DependentUpon>
     </Compile>
+    <Page Include="AboutWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddAppointmentPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -126,6 +139,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="EditAppointmentsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="EditCustomerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -137,6 +154,10 @@
     <Page Include="EmailPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="InvoicePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -205,9 +226,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Car %282%29.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\Car %281%29.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -217,9 +235,6 @@
     <Resource Include="Images\Image2.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Red X.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\Image3.png" />
   </ItemGroup>
   <ItemGroup>
@@ -227,21 +242,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\white.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\add-employee-icon-png-4.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\add_user_plus_male-512.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\add_user_group-512.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\edit-user-512.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\edit-user.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\tires.png" />
@@ -270,16 +270,34 @@
     <Resource Include="Images\Services\key.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\add_calendar.png" />
+    <Resource Include="Images\schedule.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\calendar.PNG" />
+    <Resource Include="Images\notes.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\deadline.png" />
+    <Resource Include="Images\add-user.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\email.png" />
+    <Resource Include="Images\edit-user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\mail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\invoice.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Car.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Car.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\main-background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\save.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

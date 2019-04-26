@@ -145,9 +145,17 @@
                     </Calendar>
                     <RadioButton x:Name="selectDate_Button" Content="Select Date" HorizontalAlignment="Left" Margin="39,94,0,0" VerticalAlignment="Top" Checked="SelectDate_Button_Checked"/>
                     <RadioButton x:Name="nextAavaliable_Button" Content="Next Avaliable" HorizontalAlignment="Left" Margin="123,94,0,0" VerticalAlignment="Top" Checked="NextAavaliable_Button_Checked"/>
-                    <GridSplitter HorizontalAlignment="Left" Height="219" Margin="249,94,0,0" VerticalAlignment="Top" Width="5" Background="#FF43B92F"/>
+                    <GridSplitter HorizontalAlignment="Left" Height="219" Margin="249,94,0,0" VerticalAlignment="Top" Width="5">
+                        <GridSplitter.Background>
+                            <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.HotTrackColorKey}}"/>
+                        </GridSplitter.Background>
+                    </GridSplitter>
                     <ComboBox x:Name="Mechanincs_ComboBox" HorizontalAlignment="Left" Margin="300,94,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="Mechanincs_ComboBox_SelectionChanged"/>
-                    <GridSplitter HorizontalAlignment="Left" Height="219" Margin="473,94,0,0" VerticalAlignment="Top" Width="5" Background="#FF43B92F"/>
+                    <GridSplitter HorizontalAlignment="Left" Height="219" Margin="473,94,0,0" VerticalAlignment="Top" Width="5">
+                        <GridSplitter.Background>
+                            <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.HotTrackColorKey}}"/>
+                        </GridSplitter.Background>
+                    </GridSplitter>
                     <ListView x:Name="appointmentListView" HorizontalAlignment="Left" Height="188" Margin="530,94,0,0" VerticalAlignment="Top" Width="230" SelectionChanged="AppointmentListView_SelectionChanged">
                         <ListView.View>
                             <GridView>

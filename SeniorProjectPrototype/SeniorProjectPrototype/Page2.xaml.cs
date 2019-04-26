@@ -37,6 +37,8 @@ namespace SeniorProjectPrototype
         public static RoutedCommand MyComandClient = new RoutedCommand();
         public static RoutedCommand MyComandEmployee = new RoutedCommand();
         public static RoutedCommand MyComandSearch = new RoutedCommand();
+        public static RoutedCommand MyComandEmail = new RoutedCommand();
+        public static RoutedCommand MyComandInvoice = new RoutedCommand();
         public static RoutedCommand MyComandLogout = new RoutedCommand();
         public static RoutedCommand MyComandExit = new RoutedCommand();
         public static RoutedCommand MyComandAbout = new RoutedCommand();
@@ -54,6 +56,12 @@ namespace SeniorProjectPrototype
             MyComandSearch.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));
             CommandBindings.Add(new CommandBinding(MyComandSearch, Button_Search_Click));
 
+            MyComandEmail.InputGestures.Add(new KeyGesture(Key.M, ModifierKeys.Control));
+            CommandBindings.Add(new CommandBinding(MyComandEmail, Button_Email_Click));
+
+            MyComandInvoice.InputGestures.Add(new KeyGesture(Key.I, ModifierKeys.Control));
+            CommandBindings.Add(new CommandBinding(MyComandInvoice, Button_Invoice_Click));
+
             MyComandLogout.InputGestures.Add(new KeyGesture(Key.L, ModifierKeys.Control));
             CommandBindings.Add(new CommandBinding(MyComandLogout, Logout_MenuItem_Click));
 
@@ -64,7 +72,7 @@ namespace SeniorProjectPrototype
             CommandBindings.Add(new CommandBinding(MyComandAbout, About_MenuItem_Click));
 
             setMechanics();
-            button_Add_Employee.Focus();
+            Add_Person_Button.Focus();
             calendar.SelectedDate = DateTime.Today;
         }
 
@@ -92,6 +100,11 @@ namespace SeniorProjectPrototype
             Mechanincs_ComboBox.Items.Add("All");
         }
 
+        private void Add_Person_Button_Click(object sender, RoutedEventArgs e)
+        {
+            WindowsManeger.OpenSearch(true);
+        }
+
         private void Button_Add_Client_Click(object sender, RoutedEventArgs e)
         {
             WindowsManeger.OpenAddClient();
@@ -104,7 +117,7 @@ namespace SeniorProjectPrototype
 
         private void Button_Search_Click(object sender, RoutedEventArgs e)
         {
-            WindowsManeger.OpenSearch();
+            WindowsManeger.OpenSearch(false);
         }
 
         private void AddClient_MenuItem_Click(object sender, RoutedEventArgs e)
@@ -145,7 +158,8 @@ namespace SeniorProjectPrototype
 
         private void About_MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("TJCTJ Systems \nCreators:\n    Jason Diaz \n    Thomas Holzmacher \n    Twinkle Patel\n    James Pina\n    Conner Urban", "About");
+            AboutWindow Win = new AboutWindow();
+            Win.Show();
         }
         
         private void Email_Click(object sender, RoutedEventArgs e)
@@ -225,6 +239,26 @@ namespace SeniorProjectPrototype
             WindowsManeger.OpenAddAppointment();
         }
 
+        private void Button_Edit_Appointments_Click(object sender, RoutedEventArgs e)
+        {
+            MySqlManipulator mySqlManipulator = new MySqlManipulator();
+
+            mySqlManipulator.login();
+
+            DateTime selectedDate = Convert.ToDateTime(calendar.SelectedDate);
+
+            List<Appointment> appointments = mySqlManipulator.getAppointmentsFor(selectedDate.Month.ToString(), selectedDate.Day.ToString());
+
+            if(appointments == null || appointments.Count == 0)
+            {
+                MessageBox.Show("There are no appointments for the selected day!", "No Appointments", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            else
+            {
+                WindowsManeger.OpenEditAppointments(appointments);
+            }
+        }
+
         private void Button_Email_Click(object sender, RoutedEventArgs e)
         {
             WindowsManeger.OpenEmail();
@@ -292,7 +326,6 @@ namespace SeniorProjectPrototype
 
             num = (item.Description.Length) % 7;
 
-            //if (value == "Betsie Rose") cell.Background = Brushes.Red;
             if (value != "")
             {
                 switch (num)
@@ -321,7 +354,6 @@ namespace SeniorProjectPrototype
                 }
             }
             else cell.Background = Brushes.White;
-            //else cell.Background = Brushes.Green;
         }
 
         public static DataGridRow GetRow(DataGrid grid, int index)
@@ -453,27 +485,50 @@ namespace SeniorProjectPrototype
             MessageBox.Show("JSON Created");
         }
 
-
+        private void Button_Invoice_Click(object sender, RoutedEventArgs e)
+        {
+            WindowsManeger.OpenInvoice();
+        }
     }
 }
 
 
 
 
-        /** INVOICING
-        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
-        {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.InitialDirectory = System.IO.Directory.GetCurrentDirectory();
+/** INVOICING
+ * string filename = "Invoice\\Invoice.docx";
+    //System.IO.FileStream writer = new FileStream(filename, FileMode.Create, FileAccess.Write);
 
-            if (saveFileDialog.ShowDialog() == true)
-            {
-                using (StreamWriter sw = new StreamWriter(saveFileDialog.FileName))
-                {
-                    sw.WriteLine(emp.id);
-                    sw.WriteLine(emp.department);
-                }
-            }
+
+
+    FileStream fs1 = new FileStream(filename, FileMode.OpenOrCreate, FileAccess.Write);
+    StreamWriter writer = new StreamWriter(fs1);
+    writer.Write("Hello Welcome");
+    writer.
+    writer.Close();
+
+
+
+    ser.WriteObject(writer, calendar);
+
+    string fileName = "c://msdn.bmp";  //the picture file to be inserted
+    Object oMissed = doc.Paragraphs[2].Range; //the position you want to insert
+    Object oLinkToFile = false;  //default
+    Object oSaveWithDocument = true;//default
+    wir.InlineShapes.AddPicture(fieldName, ref oLinkToFile, ref oSaveWithDocument, ref oMissed);
+private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+{
+    SaveFileDialog saveFileDialog = new SaveFileDialog();
+    saveFileDialog.InitialDirectory = System.IO.Directory.GetCurrentDirectory();
+
+    if (saveFileDialog.ShowDialog() == true)
+    {
+        using (StreamWriter sw = new StreamWriter(saveFileDialog.FileName))
+        {
+            sw.WriteLine(emp.id);
+            sw.WriteLine(emp.department);
         }
-        **/
-    
+    }
+}
+**/
+
