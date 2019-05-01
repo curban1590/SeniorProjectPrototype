@@ -109,7 +109,7 @@ namespace SeniorProjectPrototype
                 {
                     
 
-                    MailMessage message = new MailMessage("tjcjtsystems@gmail.com", selectedCustomer.Email, emailSubjectTextBox.Text, emailBodyTextBox.Text);
+                    MailMessage message = new MailMessage("tjcjtsystems@gmail.com", selectedCustomer.Email, escapeQuotes(emailSubjectTextBox.Text), escapeQuotes(emailBodyTextBox.Text));
 
                     System.Net.Mail.Attachment attachment;
                     attachment = new System.Net.Mail.Attachment(@"Attachments/logo.png");
@@ -164,25 +164,23 @@ namespace SeniorProjectPrototype
             }
         }
 
-
-
-
-
-
-
-
-
-
-
+        private string escapeQuotes(string s)
+        {
+            s = s.Replace("\"", "\\\"");
+            s = s.Replace("\'", "\\\'");
+            return s;
+        }
+        private string noQuotes(string s)
+        {
+            s = s.Replace("\"", "");
+            s = s.Replace("\'", "");
+            return s;
+        }
 
         private void ClearTextBoxes(){
             emailSubjectTextBox.Clear();
             emailBodyTextBox.Clear();
             emailTargetTextBox.Clear();
         }
-
-
-
-
     }
 }

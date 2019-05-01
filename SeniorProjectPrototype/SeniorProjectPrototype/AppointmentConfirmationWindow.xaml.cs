@@ -87,7 +87,7 @@ namespace SeniorProjectPrototype
         private void Book_Button_Click(object sender, RoutedEventArgs e)
         {
             
-            appointment.description = Description_TextBox.Text;
+            appointment.description = escapeQuotes(Description_TextBox.Text);
 
             MySqlManipulator mySqlManipulator = new MySqlManipulator();
 
@@ -113,5 +113,12 @@ namespace SeniorProjectPrototype
             WindowsManeger.CloseWindow(Title);
 
         }
+        private string escapeQuotes(string s)
+        {
+            s = s.Replace("\"", "\\\"");
+            s = s.Replace("\'", "\\\'");
+            return s;
+        }
     }
+
 }

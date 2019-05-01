@@ -112,7 +112,7 @@ namespace SeniorProjectPrototype
                 }
                 else
                 {
-                    customer.FName = firstNameTextBox.Text;
+                    customer.FName = escapeQuotes(firstNameTextBox.Text);
                 }
 
                 if (lastNameTextBox.Text == "")
@@ -122,7 +122,7 @@ namespace SeniorProjectPrototype
                 }
                 else
                 {
-                    customer.LName = lastNameTextBox.Text;
+                    customer.LName = escapeQuotes(lastNameTextBox.Text);
                 }
 
                 if (phoneNumberTextBox.Text == "")
@@ -132,7 +132,7 @@ namespace SeniorProjectPrototype
                 }
                 else
                 {
-                    customer.PhoneNum = phoneNumberTextBox.Text;
+                    customer.PhoneNum = noQuotes(phoneNumberTextBox.Text);
                 }
 
                 if (emailTextBox.Text == "")
@@ -142,7 +142,7 @@ namespace SeniorProjectPrototype
                 }
                 else
                 {
-                    customer.Email = emailTextBox.Text;
+                    customer.Email = noQuotes(emailTextBox.Text);
                 }
 
                 if (streetNumTextBox.Text == "")
@@ -152,7 +152,7 @@ namespace SeniorProjectPrototype
                 }
                 else
                 {
-                    customer.StreetNum = streetNumTextBox.Text;
+                    customer.StreetNum = noQuotes(streetNumTextBox.Text);
                 }
 
                 if (streetNameTextBox.Text == "")
@@ -162,7 +162,7 @@ namespace SeniorProjectPrototype
                 }
                 else
                 {
-                    customer.StreetName = streetNameTextBox.Text;
+                    customer.StreetName = escapeQuotes(streetNameTextBox.Text);
                 }
 
                 if (cityTextBox.Text == "")
@@ -172,7 +172,7 @@ namespace SeniorProjectPrototype
                 }
                 else
                 {
-                    customer.City = cityTextBox.Text;
+                    customer.City = escapeQuotes(cityTextBox.Text);
                 }
 
                 if (stateTextBox.Text == "")
@@ -182,7 +182,7 @@ namespace SeniorProjectPrototype
                 }
                 else
                 {
-                    customer.State = stateTextBox.Text;
+                    customer.State = noQuotes(stateTextBox.Text);
                 }
 
                 if (zipTextBox.Text == "")
@@ -192,7 +192,7 @@ namespace SeniorProjectPrototype
                 }
                 else
                 {
-                    customer.Zip = zipTextBox.Text;
+                    customer.Zip = noQuotes(zipTextBox.Text);
                 }
                 #endregion
 
@@ -308,6 +308,17 @@ namespace SeniorProjectPrototype
             stateTextBox.Clear();
             zipTextBox.Clear();
         }
-
+        private string escapeQuotes(string s)
+        {
+            s = s.Replace("\"", "\\\"");
+            s = s.Replace("\'", "\\\'");
+            return s;
+        }
+        private string noQuotes(string s)
+        {
+            s = s.Replace("\"", "");
+            s = s.Replace("\'", "");
+            return s;
+        }
     }
 }

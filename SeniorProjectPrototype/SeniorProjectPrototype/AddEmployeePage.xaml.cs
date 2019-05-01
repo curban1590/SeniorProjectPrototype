@@ -37,7 +37,7 @@ namespace SeniorProjectPrototype
             }
             else
             {
-                employee.FName = firstNameTextBox.Text;
+                employee.FName = escapeQuotes(firstNameTextBox.Text);
             }
 
             if (lastNameTextBox.Text == "")
@@ -47,7 +47,7 @@ namespace SeniorProjectPrototype
             }
             else
             {
-                employee.LName = lastNameTextBox.Text;
+                employee.LName = escapeQuotes(lastNameTextBox.Text);
             }
 
             if (phoneNumberTextBox.Text == "")
@@ -57,7 +57,7 @@ namespace SeniorProjectPrototype
             }
             else
             {
-                employee.Phone = phoneNumberTextBox.Text;
+                employee.Phone = noQuotes(phoneNumberTextBox.Text);
             }
 
             if (jobTitleBox.Text == "")
@@ -77,7 +77,7 @@ namespace SeniorProjectPrototype
             }
             else
             {
-                employee.StreetNum = streetNumTextBox.Text;
+                employee.StreetNum = noQuotes(streetNumTextBox.Text);
             }
 
             if (streetNameTextBox.Text == "")
@@ -87,7 +87,7 @@ namespace SeniorProjectPrototype
             }
             else
             {
-                employee.StreetName = streetNameTextBox.Text;
+                employee.StreetName = escapeQuotes(streetNameTextBox.Text);
             }
 
             if (cityTextBox.Text == "")
@@ -97,7 +97,7 @@ namespace SeniorProjectPrototype
             }
             else
             {
-                employee.City = cityTextBox.Text;
+                employee.City = escapeQuotes(cityTextBox.Text);
             }
 
             if (stateTextBox.Text == "")
@@ -107,7 +107,7 @@ namespace SeniorProjectPrototype
             }
             else
             {
-                employee.State = stateTextBox.Text;
+                employee.State = escapeQuotes(stateTextBox.Text);
             }
 
             if (zipTextBox.Text == "")
@@ -117,7 +117,7 @@ namespace SeniorProjectPrototype
             }
             else
             {
-                employee.Zip = zipTextBox.Text;
+                employee.Zip = noQuotes(zipTextBox.Text);
             }
             #endregion
             
@@ -127,7 +127,7 @@ namespace SeniorProjectPrototype
 
             mySqlManipulator.addToTable(employee);
 
-            MessageBox.Show(employee.FName + " " + employee.LName + " was added successfully!", "Successful", MessageBoxButton.OK, MessageBoxImage.None);
+            MessageBox.Show(firstNameTextBox.Text + " " + lastNameTextBox.Text + " was added successfully!", "Successful", MessageBoxButton.OK, MessageBoxImage.None);
             clearBoxes();
         }
 
@@ -142,6 +142,17 @@ namespace SeniorProjectPrototype
             stateTextBox.Clear();
             zipTextBox.Clear();
         }
-
+        private string escapeQuotes(string s)
+        {
+            s = s.Replace("\"", "\\\"");
+            s = s.Replace("\'", "\\\'");
+            return s;
+        }
+        private string noQuotes(string s)
+        {
+            s = s.Replace("\"", "");
+            s = s.Replace("\'", "");
+            return s;
+        }
     }
 }
