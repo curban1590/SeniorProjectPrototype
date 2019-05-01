@@ -792,6 +792,11 @@ namespace SeniorProjectPrototype
                 tabControl.SelectedItem = tabControl.Items[1];
                 return;
             }
+            if (totalDuration > 800)
+            {
+                MessageBox.Show("Too many services selected!", "Too many services!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
 
             if (allMechanics && nextAavaliable_Button.IsChecked == true)
             {
