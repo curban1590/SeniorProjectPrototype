@@ -13,15 +13,15 @@
                     <TreeViewItem Header="Conner Urban"/>
                 </TreeViewItem>
                 <TreeViewItem Header="Diagramming" IsExpanded="False">
-                    <TreeViewItem Header="James"/>
-                    <TreeViewItem Header="Twinkle"/>
+                    <TreeViewItem Header="James Pina"/>
+                    <TreeViewItem Header="Twinkle Patel"/>
                 </TreeViewItem>
                 <TreeViewItem Header="Programming" IsExpanded="False">
                     <TreeViewItem Header="C#/WPF" IsExpanded="False">
-                        <TreeViewItem Header="Jason"/>
+                        <TreeViewItem Header="Jason Diaz"/>
                     </TreeViewItem>
                     <TreeViewItem Header="Web" IsExpanded="False">
-                        <TreeViewItem Header="Thomas"/>
+                        <TreeViewItem Header="Thomas Holzmacher"/>
                     </TreeViewItem>
                 </TreeViewItem>
             </TreeViewItem>

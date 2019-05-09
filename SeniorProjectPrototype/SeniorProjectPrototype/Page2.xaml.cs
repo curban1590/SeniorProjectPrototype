@@ -102,32 +102,74 @@ namespace SeniorProjectPrototype
 
         private void Add_Person_Button_Click(object sender, RoutedEventArgs e)
         {
-            WindowsManeger.OpenSearch(true);
+            if (WindowsManeger.loggedInEmployee.JobTitle == "Admin")
+            {
+                WindowsManeger.OpenSearch(true);
+            }
+            else
+            {
+                MessageBox.Show("Must be logged in as Admin to use this feature", "Permission Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void Button_Add_Client_Click(object sender, RoutedEventArgs e)
         {
-            WindowsManeger.OpenAddClient();
+            if (WindowsManeger.loggedInEmployee.JobTitle == "Admin")
+            {
+                WindowsManeger.OpenAddClient();
+            }
+            else
+            {
+                MessageBox.Show("Must be logged in as Admin to use this feature", "Permission Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void Button_Add_Employee_Click(object sender, RoutedEventArgs e)
         {
-            WindowsManeger.OpenAddEmployee();
+            if (WindowsManeger.loggedInEmployee.JobTitle == "Admin")
+            {
+                WindowsManeger.OpenAddEmployee();
+            }
+            else
+            {
+                MessageBox.Show("Must be logged in as Admin to use this feature", "Permission Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void Button_Search_Click(object sender, RoutedEventArgs e)
         {
-            WindowsManeger.OpenSearch(false);
+            if (WindowsManeger.loggedInEmployee.JobTitle == "Admin" || WindowsManeger.loggedInEmployee.JobTitle == "Technician")
+            {
+                WindowsManeger.OpenSearch(false);
+            }
+            else
+            {
+                MessageBox.Show("Must be logged in as a Admin or Technician to use this feature", "Permission Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void AddClient_MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            Button_Add_Client_Click(sender, e);
+            if (WindowsManeger.loggedInEmployee.JobTitle == "Admin")
+            {
+                Button_Add_Client_Click(sender, e);
+            }
+            else
+            {
+                MessageBox.Show("Must be logged in as Admin to use this feature", "Permission Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void AddEmployees_MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            Button_Add_Employee_Click(sender, e);
+            if (WindowsManeger.loggedInEmployee.JobTitle == "Admin")
+            {
+                Button_Add_Employee_Click(sender, e);
+            }
+            else
+            {
+                MessageBox.Show("Must be logged in as Admin to use this feature", "Permission Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void Edit_MenuItem_Click(object sender, RoutedEventArgs e)

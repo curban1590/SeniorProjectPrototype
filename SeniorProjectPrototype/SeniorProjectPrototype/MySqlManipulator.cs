@@ -122,7 +122,7 @@ namespace SeniorProjectPrototype
 
             connection.Close();
 
-            command = "INSERT INTO tblCustomer VALUES (" + stringID + ", " + customer.toSQLString() + ", \'" + GeneratePassword() + "\')";
+            command = "INSERT INTO tblCustomer VALUES (" + stringID + ", " + customer.toSQLString() + ", \'" + GeneratePassword() + "\', 1)";
 
             myCommand = new MySqlCommand(command, connection);
             connection.Open();
@@ -275,6 +275,7 @@ namespace SeniorProjectPrototype
                 customer.Zip = reader.GetString(7);
                 customer.PhoneNum = reader.GetString(8);
                 customer.Email = reader.GetString(9);
+                customer.isActive = reader.GetBoolean(11);
                 customers.Add(customer);
             }
             connection.Close();
@@ -398,6 +399,7 @@ namespace SeniorProjectPrototype
                 customer.Zip = reader.GetString(7);
                 customer.PhoneNum = reader.GetString(8);
                 customer.Email = reader.GetString(9);
+                customer.isActive = reader.GetBoolean(11);
                 customers.Add(customer);
             }
             connection.Close();
@@ -507,6 +509,7 @@ namespace SeniorProjectPrototype
                 customer.Zip = reader.GetString(7);
                 customer.PhoneNum = reader.GetString(8);
                 customer.Email = reader.GetString(9);
+                customer.isActive = reader.GetBoolean(11);
             }
             connection.Close();
             return customer;
@@ -813,7 +816,7 @@ namespace SeniorProjectPrototype
 
         public void Delete(Customer customer)
         {
-            string command = "DELETE FROM tblCustomer WHERE CustomerID = " + customer.ID;
+            string command = "UPDATE `tblCustomer` SET `IsActive` = '0' WHERE `CustomerID` = " + customer.ID;
             MySqlCommand myCommand = new MySqlCommand(command, connection);
             connection.Open();
             myCommand.ExecuteNonQuery();

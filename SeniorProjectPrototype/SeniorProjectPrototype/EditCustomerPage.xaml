@@ -29,7 +29,11 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <GridSplitter Margin="16,0,10,0" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Stretch" Grid.Column="2" Width="6" Grid.RowSpan="2"/>
+        <GridSplitter Margin="16,0,10,0" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Stretch" Grid.Column="2" Width="6" Grid.RowSpan="2">
+            <GridSplitter.Background>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.HotTrackColorKey}}"/>
+            </GridSplitter.Background>
+        </GridSplitter>
         <Label Content="Customer Search" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Agency FB" Grid.ColumnSpan="2" Height="38" Width="142"/>
         <Label Content="First Name" HorizontalAlignment="Left" Margin="11,26,0,0" VerticalAlignment="Top" FontFamily="Agency FB" FontSize="20" Grid.Column="3" Height="34" Width="79" Grid.Row="1"/>
         <Label Content="Zip Code" HorizontalAlignment="Left" Margin="13,248,0,0" VerticalAlignment="Top" FontFamily="Agency FB" FontSize="20" Grid.Column="5" Height="34" Width="63" Grid.Row="1"/>

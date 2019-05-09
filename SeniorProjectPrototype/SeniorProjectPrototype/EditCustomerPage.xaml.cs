@@ -36,7 +36,10 @@ namespace SeniorProjectPrototype
 
             foreach (Customer cus in customers)
             {
-                customer_ListView.Items.Add(cus);
+                if (cus.isActive)
+                {
+                    customer_ListView.Items.Add(cus);
+                }
             }
         }
 
@@ -54,7 +57,10 @@ namespace SeniorProjectPrototype
 
             foreach (Customer cus in customers)
             {
-                customer_ListView.Items.Add(cus);
+                if (cus.isActive)
+                {
+                    customer_ListView.Items.Add(cus);
+                }
             }
         }
 
@@ -72,7 +78,10 @@ namespace SeniorProjectPrototype
 
             foreach (Customer cus in customers)
             {
-                customer_ListView.Items.Add(cus);
+                if (cus.isActive)
+                {
+                    customer_ListView.Items.Add(cus);
+                }
             }
         }
 

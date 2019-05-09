@@ -60,7 +60,10 @@ namespace SeniorProjectPrototype
 
             foreach (Customer cus in customers)
             {
-                customer_ListView.Items.Add(cus);
+                if (cus.isActive)
+                {
+                    customer_ListView.Items.Add(cus);
+                }
             }
 
             Fuse_Slider.IsEnabled = false;
@@ -108,7 +111,10 @@ namespace SeniorProjectPrototype
 
             foreach (Customer cus in customers)
             {
-                customer_ListView.Items.Add(cus);
+                if (cus.isActive)
+                {
+                    customer_ListView.Items.Add(cus);
+                }
             }
         }
 

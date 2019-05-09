@@ -36,7 +36,9 @@ namespace SeniorProjectPrototype
 
             foreach (Employee emp in employees)
             {
+
                 employee_ListView.Items.Add(emp);
+
             }
         }
 
@@ -219,21 +221,28 @@ namespace SeniorProjectPrototype
 
                 if (result == MessageBoxResult.Yes)
                 {
-                    Employee employee = selectedEmployee;
+                    if (selectedEmployee.ID != WindowsManeger.loggedInEmployee.ID)
+                    {
+                        Employee employee = selectedEmployee;
 
-                    MySqlManipulator mySqlManipulator = new MySqlManipulator();
+                        MySqlManipulator mySqlManipulator = new MySqlManipulator();
 
-                    mySqlManipulator.login();
+                        mySqlManipulator.login();
 
-                    mySqlManipulator.Delete(employee);
+                        mySqlManipulator.Delete(employee);
 
-                    selectedEmployee = null;
+                        selectedEmployee = null;
 
-                    ClearTextBoxes();
-                    search_Textbox.Clear();
-                    MessageBox.Show("Employee Deleted Succesfully", "Succesful Delete", MessageBoxButton.OK);
+                        ClearTextBoxes();
+                        search_Textbox.Clear();
+                        MessageBox.Show("Employee Deleted Succesfully", "Succesful Delete", MessageBoxButton.OK);
 
-                    ShowAll_Button_Click(sender, e);
+                        ShowAll_Button_Click(sender, e);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Cannot delete employee that is logged in!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
             }
             else

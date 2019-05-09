@@ -9,6 +9,7 @@ namespace SeniorProjectPrototype
     public static class WindowsManeger
     {
         public static List<Window> openWindows = new List<Window>();
+        public static Employee loggedInEmployee = new Employee();
 
         public static void OpenAddClient()
         {

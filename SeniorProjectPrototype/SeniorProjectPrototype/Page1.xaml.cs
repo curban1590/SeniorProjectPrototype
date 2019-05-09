@@ -62,6 +62,7 @@ namespace SeniorProjectPrototype
                 }
                 else
                 {
+                    WindowsManeger.loggedInEmployee = mySqlManipulator.getEmployee(username);
                     NavigationService.Navigate(new Page2());
                 }
             }
@@ -94,6 +95,10 @@ namespace SeniorProjectPrototype
 
         private void Label_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            Employee employee = new Employee();
+            employee.ID = "1";
+            employee.JobTitle = "Admin";
+            WindowsManeger.loggedInEmployee = employee;
             NavigationService.Navigate(new Page2());
         }
 
