@@ -129,8 +129,7 @@ namespace SeniorProjectPrototype
 
                         Thread threadSendMails;
                         threadSendMails = new Thread(delegate ()
-                        {
-                            MessageBox.Show("Email Click");
+                        {                    
                             client.Send(message);
                             MessageBox.Show("Email Sent");
                             message.Dispose();
